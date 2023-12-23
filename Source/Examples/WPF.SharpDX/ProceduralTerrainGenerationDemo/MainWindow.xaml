@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
         xmlns:local="clr-namespace:ProceduralTerrainGenerationDemo"
         mc:Ignorable="d"
         Title="MainWindow"
@@ -12,6 +13,39 @@
         <local:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        
+        <hx:Viewport3DX x:Name="viewport"
+                        EffectsManager="{Binding EffectsManager}"
+                        Camera="{Binding Camera}"
+                        BackgroundColor="White"
+                        CoordinateSystemLabelForeground="#434343"
+                        EnableDesignModeRendering="True"
+                        FXAALevel="Ultra"
+                        EnableSwapChainRendering="True"
+                        ModelUpDirection="0,1,0"
+                        ShowCoordinateSystem="True"
+                        TextBrush="Black"
+                        UseDefaultGestures="False">
+            <hx:Viewport3DX.InputBindings>
+                <KeyBinding Key="B" Command="hx:ViewportCommands.BackView" />
+                <KeyBinding Key="F" Command="hx:ViewportCommands.FrontView" />
+                <KeyBinding Key="U" Command="hx:ViewportCommands.TopView" />
+                <KeyBinding Key="D" Command="hx:ViewportCommands.BottomView" />
+                <KeyBinding Key="L" Command="hx:ViewportCommands.LeftView" />
+                <KeyBinding Key="R" Command="hx:ViewportCommands.RightView" />
+                <KeyBinding Command="hx:ViewportCommands.ZoomExtents" Gesture="Control+E" />
+                <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
+                <MouseBinding Command="hx:ViewportCommands.Zoom" Gesture="MiddleClick" />
+                <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="LeftClick" />
+            </hx:Viewport3DX.InputBindings>
+
+            <hx:AmbientLight3D Color="{Binding AmbientLightColor}"/>
+            <hx:DirectionalLight3D Direction="{Binding Camera.LookDirection}"
+                                   Color="{Binding DirectionalLightColor}"/>
+
+            <hx:MeshGeometryModel3D x:Name="testModel" 
+                                    Geometry="{Binding TestModel}"
+                                    Material="{Binding TestModelMaterial}"
+                                    Transform="{Binding TestModelTransform}"/>
+        </hx:Viewport3DX>
     </Grid>
 </Window>
