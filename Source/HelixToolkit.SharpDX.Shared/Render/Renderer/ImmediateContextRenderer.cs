@@ -23,6 +23,7 @@ namespace HelixToolkit.UWP
     namespace Render
     {
         using Core;
+        using Model;
         using Model.Scene;
         using Model.Scene2D;
 
@@ -31,13 +32,6 @@ namespace HelixToolkit.UWP
         /// </summary>
         public class ImmediateContextRenderer : DisposeObject, IRenderer
         {
-            private readonly Stack<KeyValuePair<int, IList<SceneNode>>> stackCache1 = new Stack<KeyValuePair<int, IList<SceneNode>>>(20);
-            private readonly Stack<KeyValuePair<int, IList<SceneNode2D>>> stack2DCache1 = new Stack<KeyValuePair<int, IList<SceneNode2D>>>(20);
-            private OrderIndependentTransparentRenderCore oitWeightedCore;
-            private OITDepthPeeling oitDepthPeelingCore;
-            private PostEffectFXAA postFXAACore;
-            private SSAOCore preSSAOCore;
-            private DeviceContextProxy immediateContext;
             /// <summary>
             /// Gets or sets the immediate context.
             /// </summary>
@@ -45,6 +39,16 @@ namespace HelixToolkit.UWP
             /// The immediate context.
             /// </value>
             public DeviceContextProxy ImmediateContext => immediateContext;
+
+            private readonly Stack<KeyValuePair<int, IList<SceneNode>>> stackCache1 = new Stack<KeyValuePair<int, IList<SceneNode>>>(20);
+            private readonly Stack<KeyValuePair<int, IList<SceneNode2D>>> stack2DCache1 = new Stack<KeyValuePair<int, IList<SceneNode2D>>>(20);
+            private OrderIndependentTransparentRenderCore oitWeightedCore;
+            private OITDepthPeeling oitDepthPeelingCore;
+            private PostEffectFXAA postFXAACore;
+            private SSAOCore preSSAOCore;
+            private DeviceContextProxy immediateContext;
+            private ProceduralTerrainGenerationShared proceduralTerrainGenerationShared;
+            private bool terrainDataUploaded;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ImmediateContextRenderer"/> class.
@@ -61,6 +65,7 @@ namespace HelixToolkit.UWP
                 oitDepthPeelingCore = new OITDepthPeeling();
                 postFXAACore = new PostEffectFXAA();
                 preSSAOCore = new SSAOCore();
+                proceduralTerrainGenerationShared = new ProceduralTerrainGenerationShared(deviceResource.ConstantBufferPool);
             }
 
             private static readonly Func<SceneNode, RenderContext, bool> updateFunc = (x, context) =>
@@ -114,6 +119,14 @@ namespace HelixToolkit.UWP
                 if (parameter.UpdatePerFrameData)
                 {
                     context.UpdatePerFrameData(ImmediateContext);
+                }
+                if (parameter.EnableProceduralTerrainGeneration)
+                {
+                    if (!terrainDataUploaded)
+                    {
+                        proceduralTerrainGenerationShared.UploadToBuffer(ImmediateContext);
+                        terrainDataUploaded = true;
+                    }
                 }
             }
 
@@ -375,6 +388,7 @@ namespace HelixToolkit.UWP
                 RemoveAndDispose(ref oitDepthPeelingCore);
                 RemoveAndDispose(ref postFXAACore);
                 RemoveAndDispose(ref preSSAOCore);
+                RemoveAndDispose(ref proceduralTerrainGenerationShared);
                 base.OnDispose(disposeManagedResources);
             }
 

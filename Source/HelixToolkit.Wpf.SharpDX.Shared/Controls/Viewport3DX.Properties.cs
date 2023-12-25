@@ -1346,6 +1346,23 @@ namespace HelixToolkit.Wpf.SharpDX
             }));
 
         /// <summary>
+        /// The enable procedural terrain generation property.
+        /// </summary>
+        public static readonly DependencyProperty EnableProceduralTerrainGenerationProperty = DependencyProperty.Register(
+            nameof(EnableProceduralTerrainGeneration),
+            typeof(bool),
+            typeof(Viewport3DX),
+            new PropertyMetadata(false, (d, e) =>
+            {
+                var viewport = (Viewport3DX)d;
+                if (viewport.renderHostInternal != null)
+                {
+                    viewport.renderHostInternal.RenderConfiguration.EnableProceduralTerrainGeneration = (bool)e.NewValue;
+                    viewport.renderHostInternal.InvalidateRender();
+                }
+            }));
+
+        /// <summary>
         /// Background Color
         /// </summary>
         public Color BackgroundColor
@@ -3562,6 +3579,15 @@ namespace HelixToolkit.Wpf.SharpDX
         {
             get { return (bool)GetValue(IncreaseSwapchainFPSProperty); }
             set { SetValue(IncreaseSwapchainFPSProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [enable procedural terrain generation].
+        /// </summary>
+        public bool EnableProceduralTerrainGeneration
+        {
+            get => (bool)GetValue(EnableProceduralTerrainGenerationProperty);
+            set => SetValue(EnableProceduralTerrainGenerationProperty, value);
         }
     }
 }

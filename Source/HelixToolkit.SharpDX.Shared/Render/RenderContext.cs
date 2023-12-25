@@ -462,6 +462,7 @@ namespace HelixToolkit.UWP
         private volatile bool needsUpdate = true;
 
         private readonly Stack<GlobalTransformStruct> transformHistory = new Stack<GlobalTransformStruct>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderContext"/> class.
         /// </summary>

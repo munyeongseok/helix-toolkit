@@ -322,7 +322,8 @@ namespace HelixToolkit.UWP
                     ScissorRegion = new Rectangle(0, 0, RenderBuffer.TargetWidth, RenderBuffer.TargetHeight),
                     ViewportRegion = new ViewportF(0, 0, RenderBuffer.TargetWidth, RenderBuffer.TargetHeight),
                     RenderLight = RenderConfiguration.RenderLights,
-                    UpdatePerFrameData = RenderConfiguration.UpdatePerFrameData
+                    UpdatePerFrameData = RenderConfiguration.UpdatePerFrameData,
+                    EnableProceduralTerrainGeneration = RenderConfiguration.EnableProceduralTerrainGeneration
                 };
                 renderer.SetRenderTargets(ref renderParameter);
                 renderer.UpdateGlobalVariables(RenderContext, lightNodes, ref renderParameter);

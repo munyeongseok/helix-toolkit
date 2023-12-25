@@ -720,6 +720,7 @@ namespace HelixToolkit.Wpf.SharpDX
                 this.renderHostInternal.RenderConfiguration.SSAOIntensity = (float)SSAOIntensity;
                 this.renderHostInternal.RenderConfiguration.SSAOQuality = SSAOQuality;
                 this.renderHostInternal.RenderConfiguration.MinimumUpdateCount = (uint)Math.Max(0, MinimumUpdateCount);
+                this.renderHostInternal.RenderConfiguration.EnableProceduralTerrainGeneration = EnableProceduralTerrainGeneration;
                 if (ShowFrameRate)
                 {
                     this.renderHostInternal.ShowRenderDetail |= RenderDetail.FPS;

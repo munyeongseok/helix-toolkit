@@ -58,6 +58,10 @@ namespace HelixToolkit.UWP
             /// 
             /// </summary>
             public bool UpdatePerFrameData;
+            /// <summary>
+            /// 
+            /// </summary>
+            public bool EnableProceduralTerrainGeneration;
         }
 
         /// <summary>

@@ -35,6 +35,8 @@ namespace HelixToolkit.UWP
             public const string SSAOCB = "cbSSAO";
             public const string ScreenDuplicationCB = "cbScreenClone";
             public const string MorphTargetCB = "cbMorphTarget";
+            public const string TerrainCaseToNumPolysCB = "cbTerrainCaseToNumPolys";
+            public const string TerrainEdgeConnectListCB = "cbTerrainEdgeConnectList";
             //-----------Materials--------------------
             public const string DiffuseMapTB = "texDiffuseMap";
             public const string AlphaMapTB = "texAlphaMap";

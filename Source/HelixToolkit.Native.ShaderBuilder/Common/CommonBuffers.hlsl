@@ -302,6 +302,21 @@ cbuffer cbMorphTarget : register(b9)
 	int mtPitch; //Pitch between targets for deltas buffer
 }
 
+//#if defined(PROCEDURALTERRAINGENERATION)
+cbuffer cbTerrainCaseToNumPolys : register(b10)
+{
+    uint caseToNumPolys[256];
+    float3 edgeStart[12];
+    float3 edgeDir[12];
+    float3 edgeEnd[12];
+    uint edgeAxis[12];
+};
+cbuffer cbTerrainEdgeConnectList : register(b11)
+{
+    int4 triTable[1280];
+};
+//#endif
+
 ///------------------Textures---------------------
 Texture2D texDiffuseMap : register(t0);
 Texture2D<float3> texNormalMap : register(t1);

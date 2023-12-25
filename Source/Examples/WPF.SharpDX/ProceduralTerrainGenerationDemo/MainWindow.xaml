@@ -24,7 +24,8 @@
                         ModelUpDirection="0,1,0"
                         ShowCoordinateSystem="True"
                         TextBrush="Black"
-                        UseDefaultGestures="False">
+                        UseDefaultGestures="False"
+                        EnableProceduralTerrainGeneration="True">
             <hx:Viewport3DX.InputBindings>
                 <KeyBinding Key="B" Command="hx:ViewportCommands.BackView" />
                 <KeyBinding Key="F" Command="hx:ViewportCommands.FrontView" />

@@ -128,6 +128,11 @@ namespace HelixToolkit.UWP
             /// Default = 6.
             /// </summary>
             public uint MinimumUpdateCount = 6;
+
+            /// <summary>
+            /// Gets or sets a value indicating whether [enable procedural terrain generation].
+            /// </summary>
+            public bool EnableProceduralTerrainGeneration = false;
         }
     }
 }
