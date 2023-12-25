@@ -25,36 +25,54 @@ namespace HelixToolkit.UWP
         public sealed class ProceduralTerrainGenerationBufferModel : IProceduralTerrainGenerationBufferProxy
         {
             /// <summary>
-            /// Length 256 (1 * 256 * 4 = 1024)
+            /// Length 256 (1 * 256 * 4 = 1024 Byte)
             /// </summary>
-            public uint[] CaseToNumPolys { get; set; } = new uint[256];
+            public uint[] CaseToNumPolys { get; set; }
             /// <summary>
-            /// Length 12 (3 * 12 * 4 = 144)
+            /// Length 12 (3 * 12 * 4 = 144 Byte)
             /// </summary>
-            public Vector3[] EdgeStart { get; set; } = new Vector3[12];
+            public Vector3[] EdgeStart { get; set; }
             /// <summary>
-            /// Length 12 (3 * 12 * 4 = 144)
+            /// Length 12 (3 * 12 * 4 = 144 Byte)
             /// </summary>
-            public Vector3[] EdgeDir { get; set; } = new Vector3[12];
+            public Vector3[] EdgeDir { get; set; }
             /// <summary>
-            /// Length 12 (3 * 12 * 4 = 144)
+            /// Length 12 (3 * 12 * 4 = 144 Byte)
             /// </summary>
-            public Vector3[] EdgeEnd { get; set; } = new Vector3[12];
+            public Vector3[] EdgeEnd { get; set; }
             /// <summary>
-            /// Length 12 (1 * 12 * 4 = 48)
+            /// Length 12 (1 * 12 * 4 = 48 Byte)
             /// </summary>
-            public uint[] EdgeAxis { get; set; } = new uint[12];
+            public uint[] EdgeAxis { get; set; }
             /// <summary>
-            /// Length 1280 (4 * 1280 * 4 = 20480)
+            /// Length 1280 (4 * 1280 * 4 = 20480 Byte)
             /// </summary>
-            public Vector4[] TriTable { get; set; } = new Vector4[1280];
+            public Vector4[] TriTable { get; set; }
 
-            public const int SizeInBytesCaseToNumPolys = 1024 + 144 + 144 + 144 + 48;
-            public const int SizeInBytesEdgeConnectList = 20480;
+            public const int LengthCaseToNumPolys = 256;
+            public const int LengthEdgeStart = 12;
+            public const int LengthEdgeDir = 12;
+            public const int LengthEdgeEnd = 12;
+            public const int LengthEdgeAxis = 12;
+            public const int LengthTriTable = 1280;
+            /// <summary>
+            /// 1504 Byte
+            /// </summary>
+            public const int SizeInBytesCaseToNumPolys = (LengthCaseToNumPolys * 4)
+                + (LengthEdgeStart * 3 * 4)
+                + (LengthEdgeDir * 3 * 4)
+                + (LengthEdgeEnd * 3 * 4)
+                + (LengthEdgeAxis * 4);
+            /// <summary>
+            /// 20480 Byte
+            /// </summary>
+            public const int SizeInBytesEdgeConnectList = (LengthTriTable * 4 * 4);
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void UploadToBuffer(IBufferProxy buffer, DeviceContextProxy context)
             {
+                ValidateProceduralTerrainGenerationData();
+
                 var dataBox = context.MapSubresource(buffer.Buffer, 0, MapMode.WriteDiscard, MapFlags.None);
                 if (!dataBox.IsEmpty)
                 {
@@ -72,6 +90,69 @@ namespace HelixToolkit.UWP
                     }
 
                     context.UnmapSubresource(buffer.Buffer, 0);
+                }
+            }
+
+            private void ValidateProceduralTerrainGenerationData()
+            {
+                if (CaseToNumPolys == null)
+                {
+                    throw new ArgumentNullException(nameof(CaseToNumPolys));
+                }
+
+                if (EdgeStart == null)
+                {
+                    throw new ArgumentNullException(nameof(EdgeStart));
+                }
+
+                if (EdgeDir == null)
+                {
+                    throw new ArgumentNullException(nameof(EdgeDir));
+                }
+
+                if (EdgeEnd == null)
+                {
+                    throw new ArgumentNullException(nameof(EdgeEnd));
+                }
+
+                if (EdgeAxis == null)
+                {
+                    throw new ArgumentNullException(nameof(EdgeAxis));
+                }
+
+                if (TriTable == null)
+                {
+                    throw new ArgumentNullException(nameof(TriTable));
+                }
+
+                if (CaseToNumPolys.Length != LengthCaseToNumPolys)
+                {
+                    throw new InvalidOperationException($"{nameof(CaseToNumPolys)} Length must be {LengthCaseToNumPolys}");
+                }
+
+                if (EdgeStart.Length != LengthEdgeStart)
+                {
+                    throw new InvalidOperationException($"{nameof(EdgeStart)} Length must be {LengthEdgeStart}");
+                }
+
+                if (EdgeDir.Length != LengthEdgeDir)
+                {
+                    throw new InvalidOperationException($"{nameof(EdgeDir)} Length must be {LengthEdgeDir}");
+                }
+
+                if (EdgeEnd.Length != LengthEdgeEnd)
+                {
+                    throw new InvalidOperationException($"{nameof(EdgeEnd)} Length must be {LengthEdgeEnd}");
+                }
+
+                if (EdgeAxis.Length != LengthEdgeAxis)
+                {
+                    throw new InvalidOperationException($"{nameof(EdgeAxis)} Length must be {LengthEdgeAxis}");
+                }
+
+                if (TriTable.Length != LengthTriTable)
+                {
+                    throw new InvalidOperationException($"{nameof(TriTable)} Length must be {LengthTriTable}");
                 }
             }
         }

@@ -25,22 +25,30 @@ namespace HelixToolkit.UWP
 
         public sealed class ProceduralTerrainGenerationShared : DisposeObject
         {
-            public readonly ProceduralTerrainGenerationBufferModel BufferModel = new ProceduralTerrainGenerationBufferModel();
-
             private IBufferProxy bufferTerrainCaseToNumPolys;
             private IBufferProxy bufferTerrainEdgeConnectList;
+            private readonly ProceduralTerrainGenerationBufferModel bufferModel;
 
             public ProceduralTerrainGenerationShared(IConstantBufferPool pool)
             {
                 bufferTerrainCaseToNumPolys = pool.Register(DefaultBufferNames.TerrainCaseToNumPolysCB, ProceduralTerrainGenerationBufferModel.SizeInBytesCaseToNumPolys);
                 bufferTerrainEdgeConnectList = pool.Register(DefaultBufferNames.TerrainEdgeConnectListCB, ProceduralTerrainGenerationBufferModel.SizeInBytesEdgeConnectList);
+                bufferModel = new ProceduralTerrainGenerationBufferModel()
+                {
+                    CaseToNumPolys = ProceduralTerrainGenerationLookupTables.CaseToNumPolys,
+                    EdgeStart = ProceduralTerrainGenerationLookupTables.EdgeStart,
+                    EdgeDir = ProceduralTerrainGenerationLookupTables.EdgeDir,
+                    EdgeEnd = ProceduralTerrainGenerationLookupTables.EdgeEnd,
+                    EdgeAxis = ProceduralTerrainGenerationLookupTables.EdgeAxis,
+                    TriTable = ProceduralTerrainGenerationLookupTables.TriTable
+                };
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void UploadToBuffer(DeviceContextProxy context)
             {
-                BufferModel.UploadToBuffer(bufferTerrainCaseToNumPolys, context);
-                BufferModel.UploadToBuffer(bufferTerrainEdgeConnectList, context);
+                bufferModel.UploadToBuffer(bufferTerrainCaseToNumPolys, context);
+                bufferModel.UploadToBuffer(bufferTerrainEdgeConnectList, context);
             }
 
             protected override void OnDispose(bool disposeManagedResources)

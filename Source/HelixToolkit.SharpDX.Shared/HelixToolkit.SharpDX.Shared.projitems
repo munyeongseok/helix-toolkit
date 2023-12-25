@@ -203,6 +203,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\Sprite2DNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\VolumeTextureNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Terrain\ProceduralTerrainGenerationBufferModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Terrain\ProceduralTerrainGenerationLookupTables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Terrain\ProceduralTerrainGenerationShared.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Render\RenderHost\DefaultRenderHostPartial_Properties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Render\RenderHost\DX11RenderHostConfiguration.cs" />
