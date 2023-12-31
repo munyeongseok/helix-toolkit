@@ -2440,6 +2440,26 @@ namespace HelixToolkit.UWP
                 }
             };
 #endif
+
+            var renderTerrain = new TechniqueDescription(DefaultRenderTechniqueNames.Terrain)
+            {
+                InputLayoutDescription = new InputLayoutDescription(DefaultVSShaderByteCodes.VSTerrain, DefaultInputLayout.VSInputTerrain),
+                PassDescriptions = new[]
+                {
+                    new ShaderPassDescription(DefaultPassNames.Default)
+                    {
+                        ShaderList = new[]
+                        {
+                            DefaultVSShaderDescriptions.VSTerrain,
+                            DefaultGSShaderDescriptions.GSTerrain,
+                            DefaultPSShaderDescriptions.PSTerrain
+                        },
+                        BlendStateDescription = DefaultBlendStateDescriptions.NoBlend,
+                        DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSNoDepthNoStencil
+                    }
+                }
+            };
+
             yield return renderMesh;
             yield return renderMeshBatched;
             yield return renderMeshInstancing;
@@ -2466,6 +2486,7 @@ namespace HelixToolkit.UWP
 #if !NETFX_CORE
             yield return renderScreenDup;
 #endif
+            yield return renderTerrain;
         }
     }
 }

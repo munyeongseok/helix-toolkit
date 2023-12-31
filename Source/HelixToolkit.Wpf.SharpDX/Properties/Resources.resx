@@ -151,6 +151,9 @@
   <data name="gsPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\gspoint.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="gsTerrain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gsTerrain.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="hsMeshTriTessellation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\hsmeshtritessellation.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -313,6 +316,9 @@
   <data name="psSSAOP1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\psssaop1.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="psTerrain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\psTerrain.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="psViewCube" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\psviewcube.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -423,6 +429,9 @@
   </data>
   <data name="vsSSAO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\vsssao.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vsTerrain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vsTerrain.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="vsVolume" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\vsvolume.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

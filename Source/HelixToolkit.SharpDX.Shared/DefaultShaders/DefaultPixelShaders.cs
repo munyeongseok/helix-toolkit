@@ -499,6 +499,11 @@ namespace HelixToolkit.UWP
             {
                 get;
             } = "psSSAOBlur";
+
+            public static string PSTerrain
+            {
+                get;
+            } = "psTerrain";
         }
 
 
@@ -811,6 +816,11 @@ namespace HelixToolkit.UWP
             /// </summary>
             public static readonly ShaderDescription PSSSAOBlur = new ShaderDescription(nameof(PSSSAOBlur), ShaderStage.Pixel, new ShaderReflector(),
                 DefaultPSShaderByteCodes.PSSSAOBlur);
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription PSTerrain = new ShaderDescription(nameof(PSTerrain), ShaderStage.Pixel, new ShaderReflector(), DefaultPSShaderByteCodes.PSTerrain);
         }
     }
 }

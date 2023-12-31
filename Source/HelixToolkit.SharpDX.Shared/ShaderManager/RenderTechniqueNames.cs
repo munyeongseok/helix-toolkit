@@ -128,6 +128,11 @@ namespace HelixToolkit.UWP
         /// 
         /// </summary>
         public const string ScreenDuplication = "ScreenDup";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string Terrain = "RenderTerrain";
     }
     /// <summary>
     /// 

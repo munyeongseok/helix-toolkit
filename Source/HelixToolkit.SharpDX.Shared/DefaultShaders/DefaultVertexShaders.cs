@@ -258,6 +258,11 @@ namespace HelixToolkit.UWP
                 get;
             } = "vsScreenDupCursor";
 #endif
+
+            public static string VSTerrain
+            {
+                get;
+            } = "vsTerrain";
         }
 
 
@@ -436,6 +441,15 @@ namespace HelixToolkit.UWP
             public static readonly InputElement[] VSInputVolume3D = new InputElement[]
             {
                 new InputElement("SV_POSITION", 0, Format.R32G32B32_Float, InputElement.AppendAligned, 0),
+            };
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly InputElement[] VSInputTerrain = new InputElement[]
+            {
+                new InputElement("POSITION", 0, Format.R32G32B32A32_Float,  InputElement.AppendAligned, 0),
+                new InputElement("TEXCOORD", 0, Format.R32G32_Float,        InputElement.AppendAligned, 0),
             };
         }
 
@@ -617,6 +631,11 @@ namespace HelixToolkit.UWP
             public static readonly ShaderDescription VSScreenDupCursor = new ShaderDescription(nameof(VSScreenDupCursor), ShaderStage.Vertex, new ShaderReflector(), DefaultVSShaderByteCodes.VSScreenDupCursor);
 
 #endif
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription VSTerrain = new ShaderDescription(nameof(VSTerrain), ShaderStage.Vertex, new ShaderReflector(), DefaultVSShaderByteCodes.VSTerrain);
         }
     }
 }

@@ -6,6 +6,8 @@
 #include"..\Common\DataStructs.hlsl"
 #include"..\Common\Common.hlsl"
 
+#pragma pack_matrix(row_major)
+
 GSTerrainInput main(VSTerrainInput input)
 {
     GSTerrainInput output;

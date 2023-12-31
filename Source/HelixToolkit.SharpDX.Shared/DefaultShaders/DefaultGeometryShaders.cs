@@ -86,6 +86,11 @@ namespace HelixToolkit.UWP
             {
                 get;
             } = "gsMeshSkinnedOut";
+
+            public static string GSTerrain
+            {
+                get;
+            } = "gsTerrain";
         }
 
 
@@ -150,6 +155,11 @@ namespace HelixToolkit.UWP
                     DefaultVertex.SizeInBytes
                 }
             };
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription GSTerrain = new ShaderDescription(nameof(GSTerrain), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrain);
         }
     }
 }
