@@ -302,7 +302,7 @@ cbuffer cbMorphTarget : register(b9)
 	int mtPitch; //Pitch between targets for deltas buffer
 }
 
-//#if defined(PROCEDURALTERRAINGENERATION)
+#if defined(TERRAIN)
 cbuffer cbTerrainCaseToNumPolys : register(b10)
 {
     uint caseToNumPolys[256];
@@ -315,7 +315,37 @@ cbuffer cbTerrainEdgeConnectList : register(b11)
 {
     int4 triTable[1280];
 };
-//#endif
+cbuffer cbTerrainChunk
+{
+    float3 WorldChunkPos = float3(0, 0, 0);
+    float ChunkOpacity = 1;
+}
+cbuffer cbTerrainLod
+{
+    float VoxelDim = 65;
+    float VoxelDimMinusOne = 64;
+    float2 WorldVoxelSize = float2(1.0 / 64.0, 0);
+    float WorldChunkSize = 4.0;
+    float2 InvVoxelDim = float2(1.0 / 65.0, 0);
+    float2 InvVoxelDimMinusOne = float2(1.0 / 64.0, 0);
+    float Margin = 4;
+    float VoxelDimPlusMargins = 73;
+    float VoxelDimPlusMarginsMinusOne = 72;
+    float2 InvVoxelDimPlusMargins = float2(1.0 / 73.0, 0);
+    float2 InvVoxelDimPlusMarginsMinusOne = float2(1.0 / 72.0, 0);
+}
+cbuffer cbTerrainGlobalRock
+{
+    float4x4 octaveMat0;
+    float4x4 octaveMat1;
+    float4x4 octaveMat2;
+    float4x4 octaveMat3;
+    float4x4 octaveMat4;
+    float4x4 octaveMat5;
+    float4x4 octaveMat6;
+    float4x4 octaveMat7;
+}
+#endif
 
 ///------------------Textures---------------------
 Texture2D texDiffuseMap : register(t0);
@@ -365,6 +395,22 @@ Texture2D texSprite : register(t50);
 Texture3D texVolume : register(t0);
 Texture2D texVolumeFront : register(t1);
 Texture2D texVolumeBack : register(t2);
+
+#if defined(TERRAIN)
+Texture3D noiseVol0;
+Texture3D noiseVol1;
+Texture3D noiseVol2;
+Texture3D noiseVol3;
+Texture3D packedNoiseVol0;
+Texture3D packedNoiseVol1;
+Texture3D packedNoiseVol2;
+Texture3D packedNoiseVol3;
+SamplerState LinearRepeat;
+SamplerState NearestClamp;
+SamplerState NearestRepeat;
+SamplerState LinearClamp;
+#endif
+
 ///------------------Samplers-------------------
 SamplerState samplerSurface : register(s0);
 SamplerState samplerIBL : register(s1);

@@ -6,7 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="GS\gsTerrain.hlsl" />
       <None Remove="PS\psBillboardTextOITDP.hlsl" />
+      <None Remove="PS\psTerrain.hlsl" />
+      <None Remove="VS\vsTerrain.hlsl" />
     </ItemGroup>
 
     <ItemGroup>
@@ -38,6 +41,9 @@
         </HLSLShader>
         <HLSLShader Include="GS\gsMeshSkinnedOut.hlsl">
             <ShaderProfile>gs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="GS\gsTerrain.hlsl">
+          <ShaderProfile>gs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="GS\gsParticle.hlsl">
             <ShaderProfile>gs_4_0</ShaderProfile>
@@ -243,6 +249,10 @@
         <HLSLShader Include="PS\psWireframe.hlsl">
             <ShaderProfile>ps_4_0</ShaderProfile>
         </HLSLShader>
+        <HLSLShader Include="PS\psTerrain.hlsl">
+          <EntryPointName></EntryPointName>
+          <ShaderProfile>ps_4_0</ShaderProfile>
+        </HLSLShader>
         <HLSLShader Include="PS\psWireframeOIT.hlsl">
             <ShaderProfile>ps_4_0</ShaderProfile>
             <EntryPointName>wireframeOIT</EntryPointName>
@@ -345,6 +355,9 @@
         </HLSLShader>
         <HLSLShader Include="VS\vsSSAO.hlsl">
             <ShaderProfile>vs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="VS\vsTerrain.hlsl">
+          <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsVolume.hlsl">
             <ShaderProfile>vs_4_0</ShaderProfile>

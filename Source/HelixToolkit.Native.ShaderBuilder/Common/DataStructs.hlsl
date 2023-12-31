@@ -423,4 +423,29 @@ struct VolumePS_INPUT
     float4 pos : SV_POSITION;
     float4 wp : POSITION0;
 };
+
+//--------------------------------------------------------------------------------
+// Terrain
+//--------------------------------------------------------------------------------
+struct VSTerrainInput
+{
+    float4 Pos : POSITION;
+    float2 UV : TEXCOORD;
+    uint InstanceID : SV_InstanceID;
+};
+struct GSTerrainInput
+{
+    float4 ProjPos : POSITION;
+    float4 WorldPos : TEXCOORD;
+    float3 ChunkPos : TEXCOORD1;
+    uint InstanceID : BLAH;
+};
+struct PSTerrainInput
+{
+    float4 ProjPos : POSITION;
+    float4 WorldPos : TEXCOORD0;
+    float3 ChunkPos : TEXCOORD1;
+    uint RTIndex : SV_RenderTargetArrayIndex;
+};
+//--------------------------------------------------------------------------------
 #endif
