@@ -139,6 +139,7 @@
     <None Include="Resources\gsMeshSkinnedOut.cso" />
     <None Include="Resources\gsParticle.cso" />
     <None Include="Resources\gsPoint.cso" />
+    <None Include="Resources\gsTerrain.cso" />
     <None Include="Resources\hsMeshTriTessellation.cso" />
     <None Include="Resources\psBillboardText.cso" />
     <None Include="Resources\psBillboardTextOIT.cso" />
@@ -193,6 +194,7 @@
     <None Include="Resources\psSSAO.cso" />
     <None Include="Resources\psSSAOBlur.cso" />
     <None Include="Resources\psSSAOP1.cso" />
+    <None Include="Resources\psTerrain.cso" />
     <None Include="Resources\psViewCube.cso" />
     <None Include="Resources\psVolume.cso" />
     <None Include="Resources\psVolumeCube.cso" />
@@ -230,6 +232,7 @@
     <None Include="Resources\vsSkybox.cso" />
     <None Include="Resources\vsSprite.cso" />
     <None Include="Resources\vsSSAO.cso" />
+    <None Include="Resources\vsTerrain.cso" />
     <None Include="Resources\vsVolume.cso" />
   </ItemGroup>
   <ItemGroup>

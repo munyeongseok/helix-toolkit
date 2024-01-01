@@ -547,5 +547,13 @@ namespace HelixToolkit.UWP
                 set; get;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public interface ITerrainRenderParams
+        {
+
+        }
     }
 }

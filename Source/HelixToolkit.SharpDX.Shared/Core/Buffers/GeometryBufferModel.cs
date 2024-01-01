@@ -5,6 +5,7 @@ Copyright (c) 2018 Helix Toolkit contributors
 using global::SharpDX.Direct3D;
 using global::SharpDX.Direct3D11;
 using global::SharpDX.DXGI;
+using SharpDX;
 using System;
 using System.Collections.Generic;
 using System.Linq;

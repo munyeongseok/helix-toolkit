@@ -716,5 +716,26 @@ namespace HelixToolkit.UWP
         public const int SizeInBytes = 4 * 4 * 12;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct TerrainVertex
+    {
+        public Vector4 Position;
+        public Vector2 UV;
+        Vector2 padding;
+        public const int SizeInBytes = 4 * (4 + 4);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct TerrainInstanceParameter
+    {
+        public const int SizeInBytes = 0;
+    }
+
 #pragma warning restore 1591
 }

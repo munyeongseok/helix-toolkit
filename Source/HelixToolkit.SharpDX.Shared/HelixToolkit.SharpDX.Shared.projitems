@@ -39,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Buffers\MeshBufferModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Buffers\PointBufferModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Buffers\SpriteBufferModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Buffers\TerrainBufferModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Buffers\ThreadBufferManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Components\CoreComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Components\ConstantBufferComponent.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\EmptyRenderCore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\AxisPlaneGridCore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\OITDepthPeeling.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\TerrainRenderCore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TopMostMeshRenderCore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\InstancingBillboardRenderCore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\InstancingMeshRenderCore.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\ContinuousRenderNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\DynamicCodeSurface3DNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\AxisPlaneGridNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\TerrainNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\TopMostGroupNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\PostEffects\NodePostEffectXRayGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Scene\ScreenQuadNode.cs" />
