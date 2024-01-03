@@ -49,18 +49,18 @@ namespace HelixToolkit.UWP
 
             private RasterizerStateProxy terrainRasterState;
             private ShaderPass terrainShaderPass;
-            private bool needsAssignChunkVariables = true;
-            private bool needsAssignLodVariables = true;
-            private bool needsAssignGlobalRockVariables = true;
+            private bool needsAssignChunkVariables;
+            private bool needsAssignLodVariables;
+            private bool needsAssignGlobalRockVariables;
             private readonly ConstantBufferComponent terrainChunkCB;
             private readonly ConstantBufferComponent terrainLodCB;
             private readonly ConstantBufferComponent terrainGlobalRockCB;
 
             public TerrainRenderCore()
             {
-                terrainChunkCB = AddComponent(new ConstantBufferComponent(new ConstantBufferDescription(DefaultBufferNames.TerrainChunkCB, 123)));
-                terrainLodCB = AddComponent(new ConstantBufferComponent(new ConstantBufferDescription(DefaultBufferNames.TerrainLodCB, 123)));
-                terrainGlobalRockCB = AddComponent(new ConstantBufferComponent(new ConstantBufferDescription(DefaultBufferNames.TerrainGlobalRock, 123)));
+                //terrainChunkCB = AddComponent(new ConstantBufferComponent(new ConstantBufferDescription(DefaultBufferNames.TerrainChunkCB, 0)));
+                //terrainLodCB = AddComponent(new ConstantBufferComponent(new ConstantBufferDescription(DefaultBufferNames.TerrainLodCB, 0)));
+                //terrainGlobalRockCB = AddComponent(new ConstantBufferComponent(new ConstantBufferDescription(DefaultBufferNames.TerrainGlobalRock, 0)));
             }
 
             protected override bool CreateRasterState(RasterizerStateDescription description, bool force)
@@ -126,9 +126,9 @@ namespace HelixToolkit.UWP
 
             protected override void OnRender(RenderContext context, DeviceContextProxy deviceContext)
             {
-                WriteChunkVariables(deviceContext);
-                WriteLodVariables(deviceContext);
-                WriteGlobalRockVariables(deviceContext);
+                //WriteChunkVariables(deviceContext);
+                //WriteLodVariables(deviceContext);
+                //WriteGlobalRockVariables(deviceContext);
 
                 deviceContext.SetRasterState(terrainRasterState);
                 terrainShaderPass.BindShader(deviceContext);
@@ -146,9 +146,9 @@ namespace HelixToolkit.UWP
 
                         needsAssignChunkVariables = true;
                     }
-                }
 
-                terrainChunkCB.Upload(deviceContext);
+                    terrainChunkCB.Upload(deviceContext);
+                }
             }
 
             private void WriteLodVariables(DeviceContextProxy deviceContext)
@@ -161,9 +161,9 @@ namespace HelixToolkit.UWP
 
                         needsAssignLodVariables = true;
                     }
-                }
 
-                terrainLodCB.Upload(deviceContext);
+                    terrainLodCB.Upload(deviceContext);
+                }
             }
 
             private void WriteGlobalRockVariables(DeviceContextProxy deviceContext)
@@ -176,9 +176,9 @@ namespace HelixToolkit.UWP
 
                         needsAssignGlobalRockVariables = true;
                     }
-                }
 
-                terrainGlobalRockCB.Upload(deviceContext);
+                    terrainGlobalRockCB.Upload(deviceContext);
+                }
             }
 
             protected override void OnRenderCustom(RenderContext context, DeviceContextProxy deviceContext)
