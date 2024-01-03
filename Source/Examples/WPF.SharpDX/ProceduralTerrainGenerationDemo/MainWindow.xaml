@@ -47,6 +47,9 @@
                                     Geometry="{Binding TestModel}"
                                     Material="{Binding TestModelMaterial}"
                                     Transform="{Binding TestModelTransform}"/>
+
+            <hx:TerrainModel3D x:Name="terrainModel"/>
+
         </hx:Viewport3DX>
     </Grid>
 </Window>
