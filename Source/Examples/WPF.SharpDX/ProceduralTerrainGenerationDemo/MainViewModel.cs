@@ -44,8 +44,8 @@ namespace ProceduralTerrainGenerationDemo
             DirectionalLightColor = Colors.White;
 
             var meshBuilder = new MeshBuilder();
-            meshBuilder.AddSphere(new Vector3(0, 0, 0), 0.5);
-            meshBuilder.AddBox(new Vector3(0, 0, 0), 1, 0.5, 2, BoxFaces.All);
+            meshBuilder.AddSphere(new Vector3(0, 0, 0), 0.1);
+            meshBuilder.AddBox(new Vector3(0, 0, 0), 0.4, 0.1, 0.4, BoxFaces.All);
 
             var meshGeometry = meshBuilder.ToMeshGeometry3D();
             meshGeometry.Colors = new Color4Collection(meshGeometry.TextureCoordinates.Select(x => x.ToColor4()));

@@ -314,7 +314,7 @@ float DENSITY(float3 ws)
     return density;
 }
 
-float main(PSTerrainInput input) : SV_TARGET
+float main(PSTerrainInput input) : SV_Target
 {
     return DENSITY(input.WorldPos.xyz);
 }

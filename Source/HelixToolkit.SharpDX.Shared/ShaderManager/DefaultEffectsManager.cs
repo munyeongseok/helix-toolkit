@@ -2454,8 +2454,10 @@ namespace HelixToolkit.UWP
                             DefaultGSShaderDescriptions.GSTerrain,
                             DefaultPSShaderDescriptions.PSTerrain
                         },
-                        BlendStateDescription = DefaultBlendStateDescriptions.NoBlend,
-                        DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSNoDepthNoStencil
+                        //BlendStateDescription = DefaultBlendStateDescriptions.BSAlphaBlend,
+                        BlendStateDescription = DefaultBlendStateDescriptions.BSSourceAlways,
+                        DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSDepthLessEqual,
+                        Topology = PrimitiveTopology.TriangleStrip
                     }
                 }
             };

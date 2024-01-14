@@ -431,7 +431,6 @@ struct VSTerrainInput
 {
     float4 Pos : POSITION;
     float2 UV : TEXCOORD;
-    uint InstanceID : SV_InstanceID;
 };
 struct GSTerrainInput
 {
@@ -442,7 +441,7 @@ struct GSTerrainInput
 };
 struct PSTerrainInput
 {
-    float4 ProjPos : POSITION;
+    float4 ProjPos : SV_POSITION;
     float4 WorldPos : TEXCOORD0;
     float3 ChunkPos : TEXCOORD1;
     uint RTIndex : SV_RenderTargetArrayIndex;

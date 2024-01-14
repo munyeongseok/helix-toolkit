@@ -66,6 +66,48 @@ namespace HelixToolkit.UWP
 
             public TerrainNode()
             {
+                Geometry = CreateDefaultTerrainGeometry();
+            }
+
+            private MeshGeometry3D CreateDefaultTerrainGeometry()
+            {
+                var positions = new Vector3[]
+                {
+                    new Vector3(1, 0, 0), // p3  
+                    new Vector3(1, 0, 1), // p2  
+                    new Vector3(0, 0, 1), // p1
+                    new Vector3(0, 0, 0), // p0
+                };
+                var indices = new int[]
+                {
+                    0, 3, 2,
+                    0, 2, 1,
+                };
+                var normals = new Vector3[]
+                {
+                    new Vector3(0, 1, 0),
+                    new Vector3(0, 1, 0),
+                    new Vector3(0, 1, 0),
+                    new Vector3(0, 1, 0),
+                };
+                var texcoords = new Vector2[]
+                {
+                    new Vector2(0, 1),
+                    new Vector2(1, 1),
+                    new Vector2(1, 0),
+                    new Vector2(0, 0),
+                };
+                
+                return new MeshGeometry3D()
+                {
+                    Positions = new Vector3Collection(positions),
+                    Indices = new IntCollection(indices),
+                    //Normals = new Vector3Collection(normals),
+                    Normals = null,
+                    TextureCoordinates = new Vector2Collection(texcoords),
+                    Tangents = null,
+                    BiTangents = null
+                };
             }
 
             protected override IRenderTechnique OnCreateRenderTechnique(IEffectsManager effectsManager)

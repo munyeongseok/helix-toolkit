@@ -734,7 +734,8 @@ namespace HelixToolkit.UWP
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public struct TerrainInstanceParameter
     {
-        public const int SizeInBytes = 0;
+        public Vector4 padding;
+        public const int SizeInBytes = 4 * 4;
     }
 
 #pragma warning restore 1591
