@@ -73,20 +73,6 @@ float NHQu(float3 uvw, Texture3D tex, float smooth = 1)
  
     float2 d = float2(INV_LATTICE_SIZE, 0);
 
-#if 0
-    // the 8-lookup version... (SLOW)
-    float4 f1 = float4( tex.SampleLevel(NearestRepeat, uvw2 + d.xxx, 0).x, 
-                        tex.SampleLevel(NearestRepeat, uvw2 + d.yxx, 0).x, 
-                        tex.SampleLevel(NearestRepeat, uvw2 + d.xyx, 0).x, 
-                        tex.SampleLevel(NearestRepeat, uvw2 + d.yyx, 0).x );
-    float4 f2 = float4( tex.SampleLevel(NearestRepeat, uvw2 + d.xxy, 0).x, 
-                        tex.SampleLevel(NearestRepeat, uvw2 + d.yxy, 0).x, 
-                        tex.SampleLevel(NearestRepeat, uvw2 + d.xyy, 0).x, 
-                        tex.SampleLevel(NearestRepeat, uvw2 + d.yyy, 0).x );
-    float4 f3 = lerp(f2, f1, t.zzzz);
-    float2 f4 = lerp(f3.zw, f3.xy, t.yy);
-    float  f5 = lerp(f4.y, f4.x, t.x);
-#else
     // THE TWO-SAMPLE VERSION: much faster!
     // note: requires that three YZ-neighbor texels' original .x values
     //       are packed into .yzw values of each texel.
@@ -95,7 +81,6 @@ float NHQu(float3 uvw, Texture3D tex, float smooth = 1)
     float4 f3 = lerp(f1, f2, t.xxxx); // f3 = <+0, +y, +z, +yz>
     float2 f4 = lerp(f3.xy, f3.zw, t.yy); // f4 = <+0, +z>
     float f5 = lerp(f4.x, f4.y, t.z);
-#endif
   
     return f5;
 }
@@ -130,29 +115,14 @@ float DENSITY(float3 ws)
     float4 uulf_rand = saturate(NMQu(ws * 0.000718, noiseVol0) * 2 - 0.5);
     float4 uulf_rand2 = NMQu(ws * 0.000632, noiseVol1);
     float4 uulf_rand3 = NMQu(ws * 0.000695, noiseVol2);
-
-  
+    
   //-----------------------------------------------
   // PRE-WARP the world-space coordinate.
     const float prewarp_str = 25; // recommended range: 5..25
     float3 ulf_rand = 0;
-#if 0  // medium-quality version; precision breaks down when pre-warp is strong.
-    ulf_rand =     NMQs(ws*0.0041      , noiseVol2).xyz*0.64
-                 + NMQs(ws*0.0041*0.427, noiseVol3).xyz*0.32;
-#endif
-#if 1  // high-quality version
-    // CAREFUL: NHQu/s (high quality) RETURN A SINGLE FLOAT, not a float4!
-    ulf_rand.x = NHQs(ws * 0.0041 * 0.971, packedNoiseVol2, 1) * 0.64
-                   + NHQs(ws * 0.0041 * 0.461, packedNoiseVol3, 1) * 0.32;
-    ulf_rand.y = NHQs(ws * 0.0041 * 0.997, packedNoiseVol1, 1) * 0.64
-                   + NHQs(ws * 0.0041 * 0.453, packedNoiseVol0, 1) * 0.32;
-    ulf_rand.z = NHQs(ws * 0.0041 * 1.032, packedNoiseVol3, 1) * 0.64
-                   + NHQs(ws * 0.0041 * 0.511, packedNoiseVol2, 1) * 0.32;
-#endif
     ws += ulf_rand.xyz * prewarp_str * saturate(uulf_rand3.x * 1.4 - 0.3);
-
-
   //-----------------------------------------------
+    
   // compute 8 randomly-rotated versions of 'ws'.  
   // we probably won't use them all, but they're here for experimentation.
   // (and if they're not used, the shader compiler will optimize them out.)
@@ -164,95 +134,6 @@ float DENSITY(float3 ws)
     float3 c5 = rot(ws, octaveMat5);
     float3 c6 = rot(ws, octaveMat6);
     float3 c7 = rot(ws, octaveMat7);
-  
-  
-
-
-
-  //-----------------------------------------------
-  // MAIN SHAPE: CHOOSE ONE
-  
-#if 1
-    // very general ground plane:
-    density = -ws.y * 1;
-      // to add a stricter ground plane further below:
-    density += saturate((-4 - ws_orig.y * 0.3) * 3.0) * 40 * uulf_rand2.z;
-#endif
-#if 0
-    // small planet:
-    const float planet_str = 2;
-    const float planet_rad = 160;
-    float dist_from_surface = planet_rad - length(ws);
-    density = dist_from_surface * planet_str;
-#endif  
-#if 0
-    // infinite network of caves:  (small bias)
-    density = 12;  // positive value -> more rock; negative value -> more open space
-#endif
-  
-  
-  //----------------------------------------
-
-  
- 
-
-    // CRUSTY SHELF
-    // often creates smooth tops (~grass) and crumbly, eroded underneath parts.
-#if 1
-    float shelf_thickness_y = 2.5; //2.5;
-    float shelf_pos_y = -1; //-2;
-    float shelf_strength = 9.5; // 1-4 is good
-    density = lerp(density, shelf_strength, 0.83 * saturate(shelf_thickness_y - abs(ws.y - shelf_pos_y)) * saturate(uulf_rand.y * 1.5 - 0.5));
-    #endif    
-    
-    // FLAT TERRACES
-    #if 1
-    {
-        const float terraces_can_warp = 0.5 * uulf_rand2.y;
-        const float terrace_freq_y = 0.13;
-        const float terrace_str = 3 * saturate(uulf_rand.z * 2 - 1); // careful - high str here diminishes strength of noise, etc.
-        const float overhang_str = 1 * saturate(uulf_rand.z * 2 - 1); // careful - too much here and LODs interfere (most visible @ silhouettes because zbias can't fix those).
-        float fy = -lerp(ws_orig.y, ws.y, terraces_can_warp) * terrace_freq_y;
-        float orig_t = frac(fy);
-        float t = orig_t;
-        t = smooth_snap(t, 16); // faster than using 't = t*t*(3-2*t)' four times
-        fy = floor(fy) + t;
-        density += fy * terrace_str;
-        density += (t - orig_t) * overhang_str;
-    }
-#endif
-
-    // SPHERICAL TERRACES (for planet mode)
-#if 0
-    {
-      const float terraces_can_warp = 0.1;   //TWEAK
-      const float terrace_freq_r = 0.2;
-      //const float terrace_str = 0;   // careful - high str here diminishes strength of noise, etc.
-      const float overhang_str = 2;  // careful - too much here and LODs interfere (most visible @ silhouettes because zbias can't fix those).
-      float r = length(ws);
-      float r_orig = length(ws_orig);
-      float fy = -lerp(r_orig, r, terraces_can_warp)*terrace_freq_r;
-      float orig_t = frac(fy);
-      float t = orig_t;
-      t = smooth_snap(t, 16);  // faster than using 't = t*t*(3-2*t)' four times
-      fy = floor(fy) + t;
-      //density += fy*terrace_str;
-      density += (t - orig_t) * overhang_str;
-    }
-#endif
-    
-    
-    // other random effects...
-#if 1
-      // repeating ridges on [warped] Y coord:
-    density += NLQs(ws.xyz * float3(2, 27, 2) * 0.0037, noiseVol0).x * 2 * saturate(uulf_rand2.w * 2 - 1);
-#endif
-#if 0
-      // to make it extremely mountainous & climby:
-      density += ulf_rand.x*80;
-#endif
-
-
 
 #ifdef EVAL_CHEAP   //...used for fast long-range ambo queries
       float HFM = 0;
@@ -288,21 +169,7 @@ float DENSITY(float3 ws)
              + NMQs(c6 * 0.0025 * 1.045, noiseVol2).x * 20 * 0.9 // MQ
              + NHQs(c7 * 0.0012 * 0.972, packedNoiseVol3).x * 40 * 0.8 // HQ and *rotated*!
            );
-             
-    // periodic flat spots:
-#if 0
-    {
-      const float flat_spot_str = 0;  // 0=off, 1=on
-      const float dist_between_spots = 330;
-      const float spot_inner_rad = 44;
-      const float spot_outer_rad = 66;
-      float2 spot_xz = floor(ws.xz/dist_between_spots) + 0.5;
-      float dist = length(ws.xz - spot_xz*dist_between_spots);
-      float t = saturate( (spot_outer_rad - dist)/(spot_outer_rad - spot_inner_rad) );
-      t = (3 - 2*t)*t*t;
-      density = lerp(density, -ws.y*1, t*0.9*flat_spot_str);
-    }    
-#endif
+            
     
     
   // LOD DENSITY BIAS:
