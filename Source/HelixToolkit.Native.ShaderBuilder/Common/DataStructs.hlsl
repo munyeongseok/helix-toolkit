@@ -425,7 +425,7 @@ struct VolumePS_INPUT
 };
 
 //--------------------------------------------------------------------------------
-// Terrain
+// Procedural Terrain Generation
 //--------------------------------------------------------------------------------
 struct VSTerrainInput
 {
@@ -440,6 +440,28 @@ struct GSTerrainInput
     uint InstanceID : BLAH;
 };
 struct PSTerrainInput
+{
+    float4 ProjPos : SV_POSITION;
+    float4 WorldPos : TEXCOORD0;
+    float3 ChunkPos : TEXCOORD1;
+    uint RTIndex : SV_RenderTargetArrayIndex;
+};
+//--------------------------------------------------------------------------------
+// Procedural Terrain Generation Render Pass 1: Build Density
+//--------------------------------------------------------------------------------
+struct VSTerrainBuildDensityInput
+{
+    float4 Pos : POSITION;
+    float2 UV : TEXCOORD;
+};
+struct GSTerrainBuildDensityInput
+{
+    float4 ProjPos : POSITION;
+    float4 WorldPos : TEXCOORD;
+    float3 ChunkPos : TEXCOORD1;
+    uint InstanceID : BLAH;
+};
+struct PSTerrainBuildDensityInput
 {
     float4 ProjPos : SV_POSITION;
     float4 WorldPos : TEXCOORD0;

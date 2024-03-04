@@ -347,6 +347,16 @@ namespace HelixToolkit.UWP
         /// </summary>
         public const string Default = "Default";//For rendering
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    public struct ProceduralTerrainGenerationPassNames
+    {
+        /// <summary>
+        /// Render Pass 1
+        /// </summary>
+        public const string BuildDensity = "BuildDensity";
+    }
 
     //public struct TessellationRenderTechniqueNames
     //{

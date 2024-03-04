@@ -135,6 +135,11 @@ float DENSITY(float3 ws)
     float3 c6 = rot(ws, octaveMat6);
     float3 c7 = rot(ws, octaveMat7);
 
+    // very general ground plane:
+    density = -ws.y * 1;
+    // to add a stricter ground plane further below:
+    density += saturate((-4 - ws_orig.y * 0.3) * 3.0) * 40 * uulf_rand2.z;
+    
 #ifdef EVAL_CHEAP   //...used for fast long-range ambo queries
       float HFM = 0;
 #else 
@@ -170,8 +175,6 @@ float DENSITY(float3 ws)
              + NHQs(c7 * 0.0012 * 0.972, packedNoiseVol3).x * 40 * 0.8 // HQ and *rotated*!
            );
             
-    
-    
   // LOD DENSITY BIAS:
   // this shrinks the lo- and medium-res chunks just a bit,
   // so that the hi-res chunks always "enclose" them:

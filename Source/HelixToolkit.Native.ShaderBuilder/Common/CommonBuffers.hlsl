@@ -315,25 +315,26 @@ cbuffer cbTerrainEdgeConnectList : register(b11)
 {
     int4 triTable[1280];
 };
-cbuffer cbTerrainChunk
-{
-    float3 WorldChunkPos = float3(0, 0, 0);
-    float ChunkOpacity = 1;
-}
+//cbuffer cbTerrainChunk
+//{
+//    float3 WorldChunkPos = float3(0, 0, 0);
+//    float ChunkOpacity = 1;
+//};
 cbuffer cbTerrainLod
 {
-    float VoxelDim = 65;
-    float VoxelDimMinusOne = 64;
-    float2 WorldVoxelSize = float2(1.0 / 64.0, 0);
-    float WorldChunkSize = 4.0;
-    float2 InvVoxelDim = float2(1.0 / 65.0, 0);
-    float2 InvVoxelDimMinusOne = float2(1.0 / 64.0, 0);
-    float Margin = 4;
-    float VoxelDimPlusMargins = 73;
-    float VoxelDimPlusMarginsMinusOne = 72;
-    float2 InvVoxelDimPlusMargins = float2(1.0 / 73.0, 0);
-    float2 InvVoxelDimPlusMarginsMinusOne = float2(1.0 / 72.0, 0);
-}
+    float3  WorldChunkPos                   = float3(0, 0, 0);
+    float   VoxelDim                        = 33;
+    float   VoxelDimMinusOne                = 32;                   // VoxelDim - 1
+    float2  WorldVoxelSize                  = float2(1 / 32, 0);    // float2(1.0 / VoxelDimMinusOne, 0)
+    float   WorldChunkSize                  = 32;
+    float2  InvVoxelDim                     = float2(1 / 33, 0);    // float2(1.0 / VoxelDim, 0)
+    float2  InvVoxelDimMinusOne             = float2(1 / 32, 0);    // float2(1.0 / VoxelDimMinusOne, 0)
+    float   Margin                          = 4;
+    float   VoxelDimPlusMargins             = 41;                   // VoxelDim + Margin * 2;
+    float   VoxelDimPlusMarginsMinusOne     = 40;                   // voxelDimPlusMargins - 1
+    float2  InvVoxelDimPlusMargins          = float2(1 / 41, 0);    // float2(1.0 / voxelDimPlusMargins, 0)
+    float2  InvVoxelDimPlusMarginsMinusOne  = float2(1 / 40, 0);    // float2(1.0 / voxelDimPlusMarginsMinusOne, 0)
+};
 cbuffer cbTerrainGlobalRock
 {
     float4x4 octaveMat0;
@@ -344,7 +345,7 @@ cbuffer cbTerrainGlobalRock
     float4x4 octaveMat5;
     float4x4 octaveMat6;
     float4x4 octaveMat7;
-}
+};
 #endif
 
 ///------------------Textures---------------------

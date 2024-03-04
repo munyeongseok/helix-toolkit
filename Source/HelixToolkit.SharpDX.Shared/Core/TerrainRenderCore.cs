@@ -97,6 +97,9 @@ namespace HelixToolkit.UWP
                     needsAssignLodVariables = true;
                     needsAssignGlobalRockVariables = true;
                     terrainShaderPass = technique[DefaultPassNames.Default];
+
+                    // Rendering test code. Remove after testing.
+                    //terrainShaderPass = technique[ProceduralTerrainGenerationPassNames.BuildDensity];
                     return true;
                 }
                 else

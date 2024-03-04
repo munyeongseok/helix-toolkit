@@ -7,9 +7,12 @@
 
     <ItemGroup>
       <None Remove="GS\gsTerrain.hlsl" />
+      <None Remove="GS\gsTerrainBuildDensity.hlsl" />
       <None Remove="PS\psBillboardTextOITDP.hlsl" />
       <None Remove="PS\psTerrain.hlsl" />
+      <None Remove="PS\psTerrainBuildDensity.hlsl" />
       <None Remove="VS\vsTerrain.hlsl" />
+      <None Remove="VS\vsTerrainBuildDensity.hlsl" />
     </ItemGroup>
 
     <ItemGroup>
@@ -50,6 +53,9 @@
         </HLSLShader>
         <HLSLShader Include="GS\gsPoint.hlsl">
             <ShaderProfile>gs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="GS\gsTerrainBuildDensity.hlsl">
+          <ShaderProfile>gs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="HS\hsMeshTriTessellation.hlsl">
             <ShaderProfile>hs_5_0</ShaderProfile>
@@ -234,6 +240,9 @@
         <HLSLShader Include="PS\psSSAOP1.hlsl">
             <ShaderProfile>ps_4_0</ShaderProfile>
         </HLSLShader>
+        <HLSLShader Include="PS\psTerrainBuildDensity.hlsl">
+          <ShaderProfile>ps_4_0</ShaderProfile>
+        </HLSLShader>
         <HLSLShader Include="PS\psViewCube.hlsl">
             <ShaderProfile>ps_4_0</ShaderProfile>
         </HLSLShader>
@@ -357,6 +366,9 @@
             <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsTerrain.hlsl">
+          <ShaderProfile>vs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="VS\vsTerrainBuildDensity.hlsl">
           <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsVolume.hlsl">

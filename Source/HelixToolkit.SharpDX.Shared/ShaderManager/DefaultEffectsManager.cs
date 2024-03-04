@@ -2458,6 +2458,25 @@ namespace HelixToolkit.UWP
                         BlendStateDescription = DefaultBlendStateDescriptions.BSSourceAlways,
                         DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSDepthLessEqual,
                         Topology = PrimitiveTopology.TriangleStrip
+                    },
+
+                    
+                    new ShaderPassDescription(ProceduralTerrainGenerationPassNames.BuildDensity)
+                    {
+                        ShaderList = new[]
+                        {
+                            DefaultVSShaderDescriptions.VSTerrainBuildDensity,
+                            DefaultGSShaderDescriptions.GSTerrainBuildDensity,
+                            DefaultPSShaderDescriptions.PSTerrainBuildDensity
+                        },
+                        BlendStateDescription = DefaultBlendStateDescriptions.NoBlend,
+                        DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSNoDepthNoStencil,
+                        Topology = PrimitiveTopology.Undefined
+
+                        // Rendering test code. Remove after testing.
+                        //BlendStateDescription = DefaultBlendStateDescriptions.BSSourceAlways,
+                        //DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSDepthLessEqual,
+                        //Topology = PrimitiveTopology.TriangleStrip
                     }
                 }
             };

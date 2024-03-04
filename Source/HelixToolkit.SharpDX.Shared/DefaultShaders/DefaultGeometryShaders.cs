@@ -87,10 +87,8 @@ namespace HelixToolkit.UWP
                 get;
             } = "gsMeshSkinnedOut";
 
-            public static string GSTerrain
-            {
-                get;
-            } = "gsTerrain";
+            public static string GSTerrain { get; } = "gsTerrain";
+            public static string GSTerrainBuildDensity { get; } = "gsTerrainBuildDensity";
         }
 
 
@@ -160,6 +158,10 @@ namespace HelixToolkit.UWP
             /// 
             /// </summary>
             public static readonly ShaderDescription GSTerrain = new ShaderDescription(nameof(GSTerrain), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrain);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription GSTerrainBuildDensity = new ShaderDescription(nameof(GSTerrainBuildDensity), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrainBuildDensity);
         }
     }
 }
