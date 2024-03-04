@@ -315,11 +315,6 @@ cbuffer cbTerrainEdgeConnectList : register(b11)
 {
     int4 triTable[1280];
 };
-//cbuffer cbTerrainChunk
-//{
-//    float3 WorldChunkPos = float3(0, 0, 0);
-//    float ChunkOpacity = 1;
-//};
 cbuffer cbTerrainLod
 {
     float3  WorldChunkPos                   = float3(0, 0, 0);
@@ -334,17 +329,6 @@ cbuffer cbTerrainLod
     float   VoxelDimPlusMarginsMinusOne     = 40;                   // voxelDimPlusMargins - 1
     float2  InvVoxelDimPlusMargins          = float2(1 / 41, 0);    // float2(1.0 / voxelDimPlusMargins, 0)
     float2  InvVoxelDimPlusMarginsMinusOne  = float2(1 / 40, 0);    // float2(1.0 / voxelDimPlusMarginsMinusOne, 0)
-};
-cbuffer cbTerrainGlobalRock
-{
-    float4x4 octaveMat0;
-    float4x4 octaveMat1;
-    float4x4 octaveMat2;
-    float4x4 octaveMat3;
-    float4x4 octaveMat4;
-    float4x4 octaveMat5;
-    float4x4 octaveMat6;
-    float4x4 octaveMat7;
 };
 #endif
 

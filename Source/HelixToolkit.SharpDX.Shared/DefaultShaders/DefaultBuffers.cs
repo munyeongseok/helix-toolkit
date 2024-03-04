@@ -38,9 +38,6 @@ namespace HelixToolkit.UWP
             //----------Terrain--------------
             public const string TerrainCaseToNumPolysCB = "cbTerrainCaseToNumPolys";
             public const string TerrainEdgeConnectListCB = "cbTerrainEdgeConnectList";
-            public const string TerrainChunkCB = "cbTerrainChunk";
-            public const string TerrainLodCB = "cbTerrainLod";
-            public const string TerrainGlobalRock = "cbTerrainGlobalRock";
             //-----------Materials--------------------
             public const string DiffuseMapTB = "texDiffuseMap";
             public const string AlphaMapTB = "texAlphaMap";
