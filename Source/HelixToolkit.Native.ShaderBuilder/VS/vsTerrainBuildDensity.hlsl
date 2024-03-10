@@ -9,11 +9,12 @@ GSTerrainBuildDensityInput main(VSTerrainBuildDensityInput input, uint instanceI
 {
     GSTerrainBuildDensityInput output = (GSTerrainBuildDensityInput) 0;
     
-    // Rendering test code. Remove after testing.
+    // Rendering test code. Remove after testing. ---------------------------------------------------------
     //float4 projPos = mul(input.Pos + float4(0, instanceID * 0.1, 0, 0), mViewProjection);
-    
+    // ----------------------------------------------------------------------------------------------------
     float4 projPos = float4(input.Pos.xy, 0.5, 1);
     projPos.y *= -1;
+    // ----------------------------------------------------------------------------------------------------
     
     float3 chunkPos = float3(input.UV.xy, instanceID * InvVoxelDimPlusMargins.x);
     chunkPos.xyz *= VoxelDim.x * InvVoxelDimMinusOne.x;

@@ -4,21 +4,21 @@
 #include"..\Common\CommonBuffers.hlsl"
 #include"psCommon.hlsl"
 
-float4 NLQu(float3 uvw, Texture3D noiseTex)
+float4 SampleNoiseLowQualityUnsigned(float3 uvw, Texture3D noiseTexture)
 {
-    return noiseTex.SampleLevel(LinearRepeat, uvw, 0);
+    return noiseTexture.SampleLevel(samplerTerrainLinearReapeat, uvw, 0);
 }
 
-float4 NLQs(float3 uvw, Texture3D noiseTex)
+float4 SampleNoiseLowQualitySigned(float3 uvw, Texture3D noiseTexture)
 {
-    return NLQu(uvw, noiseTex) * 2 - 1;
+    return SampleNoiseLowQualityUnsigned(uvw, noiseTexture) * 2 - 1;
 }
 
-float DENSITY(float3 ws)
+float DENSITY(float3 wp)
 {
     float density = 0;
-    density = -ws.y * 1;
-    density += NLQs(ws * 0.0025 * 1.045, noiseVol0).x * 20 * 0.9;
+    density = -wp.y * 1;
+    density += SampleNoiseLowQualitySigned(wp * 0.0025 * 1.045, texTerrainNoiseVolume).x * 20 * 0.9;
     
     return density;
 }

@@ -1,8 +1,6 @@
 #ifndef GSTERRAIN_HLSL
 #define GSTERRAIN_HLSL
-
 #define TERRAIN
-
 #include"..\Common\CommonBuffers.hlsl"
 #include"..\Common\DataStructs.hlsl"
 

@@ -38,6 +38,7 @@ namespace HelixToolkit.UWP
             //----------Terrain--------------
             public const string TerrainCaseToNumPolysCB = "cbTerrainCaseToNumPolys";
             public const string TerrainEdgeConnectListCB = "cbTerrainEdgeConnectList";
+            public const string TerrainNoiseVolumeTB = "texTerrainNoiseVolume";
             //-----------Materials--------------------
             public const string DiffuseMapTB = "texDiffuseMap";
             public const string AlphaMapTB = "texAlphaMap";
@@ -97,6 +98,9 @@ namespace HelixToolkit.UWP
             public const string VolumeSampler = "samplerVolume";
 
             public const string NoiseSampler = "samplerNoise";
+
+            //----------Terrain--------------
+            public const string TerrainLinearRepeatSampler = "samplerTerrainLinearReapeat";
         }
     }
 }

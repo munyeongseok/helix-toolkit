@@ -1,8 +1,6 @@
 #ifndef VSTERRAIN_HLSL
 #define VSTERRAIN_HLSL
-
 #define TERRAIN
-
 #include"..\Common\DataStructs.hlsl"
 #include"..\Common\Common.hlsl"
 
