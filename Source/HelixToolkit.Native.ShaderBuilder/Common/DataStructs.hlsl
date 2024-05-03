@@ -469,4 +469,21 @@ struct PSTerrainBuildDensityInput
     uint RTIndex : SV_RenderTargetArrayIndex;
 };
 //--------------------------------------------------------------------------------
+// Procedural Terrain Generation Render Pass 2: List Nonempty Cells
+//--------------------------------------------------------------------------------
+struct VSTerrainListNonemptyCellsInput
+{
+    float2 UVWrite : POSITION;
+    float2 UVRead : POSITION2;
+    //uint InstanceID : SV_InstanceID;
+};
+struct GSTerrainListNonemptyCellsInput
+{
+    uint Z8Y8X8CubeCase8 : ZYXCUBECASE;
+};
+struct PSTerrainListNonemptyCellsInput
+{
+    uint Z8Y8X8CubeCase8 : ZYXCUBECASE;
+};
+//--------------------------------------------------------------------------------
 #endif

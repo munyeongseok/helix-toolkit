@@ -500,8 +500,10 @@ namespace HelixToolkit.UWP
                 get;
             } = "psSSAOBlur";
 
+            #region Terrain
             public static string PSTerrain { get; } = "psTerrain";
             public static string PSTerrainBuildDensity { get; } = "psTerrainBuildDensity";
+            #endregion
         }
 
 

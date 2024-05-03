@@ -2459,8 +2459,6 @@ namespace HelixToolkit.UWP
                         DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSDepthLessEqual,
                         Topology = PrimitiveTopology.TriangleStrip
                     },
-
-                    
                     new ShaderPassDescription(ProceduralTerrainGenerationPassNames.BuildDensity)
                     {
                         ShaderList = new[]
@@ -2478,6 +2476,17 @@ namespace HelixToolkit.UWP
                         //DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSDepthLessEqual,
                         //Topology = PrimitiveTopology.TriangleStrip
                         // ----------------------------------------------------------------------------------------------------
+                    },
+                    new ShaderPassDescription(ProceduralTerrainGenerationPassNames.ListNonemptyCells)
+                    {
+                        ShaderList = new[]
+                        {
+                            DefaultVSShaderDescriptions.VSTerrainListNonemptyCells,
+                            DefaultGSShaderDescriptions.GSTerrainListNonemptyCells
+                        },
+                        BlendStateDescription = DefaultBlendStateDescriptions.NoBlend,
+                        DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSNoDepthNoStencil,
+                        Topology = PrimitiveTopology.Undefined
                     }
                 }
             };

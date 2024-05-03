@@ -8,11 +8,13 @@
     <ItemGroup>
       <None Remove="GS\gsTerrain.hlsl" />
       <None Remove="GS\gsTerrainBuildDensity.hlsl" />
+      <None Remove="GS\gsTerrainListNonemptyCells.hlsl" />
       <None Remove="PS\psBillboardTextOITDP.hlsl" />
       <None Remove="PS\psTerrain.hlsl" />
       <None Remove="PS\psTerrainBuildDensity.hlsl" />
       <None Remove="VS\vsTerrain.hlsl" />
       <None Remove="VS\vsTerrainBuildDensity.hlsl" />
+      <None Remove="VS\vsTerrainListNonemptyCells.hlsl" />
     </ItemGroup>
 
     <ItemGroup>
@@ -55,6 +57,9 @@
             <ShaderProfile>gs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="GS\gsTerrainBuildDensity.hlsl">
+          <ShaderProfile>gs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="GS\gsTerrainListNonemptyCells.hlsl">
           <ShaderProfile>gs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="HS\hsMeshTriTessellation.hlsl">
@@ -369,6 +374,9 @@
           <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsTerrainBuildDensity.hlsl">
+          <ShaderProfile>vs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="VS\vsTerrainListNonemptyCells.hlsl">
           <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsVolume.hlsl">

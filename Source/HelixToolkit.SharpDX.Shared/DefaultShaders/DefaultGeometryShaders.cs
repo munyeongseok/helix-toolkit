@@ -87,8 +87,11 @@ namespace HelixToolkit.UWP
                 get;
             } = "gsMeshSkinnedOut";
 
+            #region Terrain
             public static string GSTerrain { get; } = "gsTerrain";
             public static string GSTerrainBuildDensity { get; } = "gsTerrainBuildDensity";
+            public static string GSTerrainListNonemptyCells { get; } = "gsTerrainListNonemptyCells";
+            #endregion
         }
 
 
@@ -162,6 +165,10 @@ namespace HelixToolkit.UWP
             /// 
             /// </summary>
             public static readonly ShaderDescription GSTerrainBuildDensity = new ShaderDescription(nameof(GSTerrainBuildDensity), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrainBuildDensity);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription GSTerrainListNonemptyCells = new ShaderDescription(nameof(GSTerrainListNonemptyCells), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrainListNonemptyCells);
         }
     }
 }

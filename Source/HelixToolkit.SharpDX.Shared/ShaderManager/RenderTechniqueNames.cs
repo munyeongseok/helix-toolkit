@@ -353,9 +353,13 @@ namespace HelixToolkit.UWP
     public struct ProceduralTerrainGenerationPassNames
     {
         /// <summary>
-        /// Render Pass 1
+        /// Render Pass 1: Build Density
         /// </summary>
         public const string BuildDensity = "BuildDensity";
+        /// <summary>
+        /// Render Pass 2: List Nonempty Cells
+        /// </summary>
+        public const string ListNonemptyCells = "ListNonemptyCells";
     }
 
     //public struct TessellationRenderTechniqueNames

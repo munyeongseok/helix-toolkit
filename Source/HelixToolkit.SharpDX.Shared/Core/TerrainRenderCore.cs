@@ -4,6 +4,7 @@
 
 using SharpDX;
 using SharpDX.Direct3D11;
+using SharpDX.DXGI;
 
 #if !NETFX_CORE
 namespace HelixToolkit.Wpf.SharpDX
@@ -51,10 +52,15 @@ namespace HelixToolkit.UWP
             private RasterizerStateProxy terrainRasterState;
             private ShaderPass terrainShaderPass;
             private ShaderPass buildDensityPass;
+            private ShaderPass listNonemptyCellsPass;
             private SamplerStateProxy linearRepeatSampler;
+            private SamplerStateProxy nearestClampSampler;
             private int noiseVolumeTBSlot;
+            private int densityVolumeTBSlot;
             private int linearRepeatSamplerSlot;
+            private int nearestClampSamplerSlot;
             private ShaderResourceViewProxy randomNoiseVolumeTexture;
+            private ShaderResourceViewProxy densityTexture;
 
             public TerrainRenderCore()
             {
@@ -93,16 +99,21 @@ namespace HelixToolkit.UWP
                     // Shader Pass
                     terrainShaderPass = technique[DefaultPassNames.Default];
                     buildDensityPass = technique[ProceduralTerrainGenerationPassNames.BuildDensity];
+                    listNonemptyCellsPass = technique[ProceduralTerrainGenerationPassNames.ListNonemptyCells];
 
                     // Sampler State
                     linearRepeatSampler = technique.EffectsManager.StateManager.Register(DefaultSamplers.LinearSamplerWrapAni1);
+                    nearestClampSampler = technique.EffectsManager.StateManager.Register(DefaultSamplers.LinearSamplerClampAni1);
 
                     // Shader Resource View
-                    randomNoiseVolumeTexture = CreateRandomNoiseVolumeTextureSRV(16, 16, 16);
-                    
+                    randomNoiseVolumeTexture = CreateRandomNoiseVolumeTextureSRV();
+                    densityTexture = CreateDensityTextureSRV();
+
                     // Bind Slot
                     noiseVolumeTBSlot = buildDensityPass.PixelShader.ShaderResourceViewMapping.TryGetBindSlot(DefaultBufferNames.TerrainNoiseVolumeTB);
+                    densityVolumeTBSlot = listNonemptyCellsPass.VertexShader.ShaderResourceViewMapping.TryGetBindSlot(DefaultBufferNames.TerrainDensityVolumeTB);
                     linearRepeatSamplerSlot = buildDensityPass.PixelShader.SamplerMapping.TryGetBindSlot(DefaultSamplerStateNames.TerrainLinearRepeatSampler);
+                    nearestClampSamplerSlot = listNonemptyCellsPass.VertexShader.SamplerMapping.TryGetBindSlot(DefaultSamplerStateNames.TerrainNearestClampSampler);
 
                     // Rendering test code. Remove after testing. ---------------------------------------------------------
                     //terrainShaderPass = technique[ProceduralTerrainGenerationPassNames.BuildDensity];
@@ -136,13 +147,25 @@ namespace HelixToolkit.UWP
 
             protected override void OnRender(RenderContext context, DeviceContextProxy deviceContext)
             {
+                var currentRenderTarget = deviceContext.GetRenderTargets(1)[0];
+
+                // Render Pass 1: Build Density
+                deviceContext.SetRenderTarget(densityTexture);
                 buildDensityPass.PixelShader.BindTexture(deviceContext, noiseVolumeTBSlot, randomNoiseVolumeTexture);
                 buildDensityPass.PixelShader.BindSampler(deviceContext, linearRepeatSamplerSlot, linearRepeatSampler);
-                buildDensityPass.BindShader(deviceContext, false);
-                //DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+                buildDensityPass.BindShader(deviceContext, bindConstantBuffer: false);
+                DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+
+                // Render Pass 2: List Nonempty Cells
+                deviceContext.SetRenderTarget(null);
+                listNonemptyCellsPass.VertexShader.BindTexture(deviceContext, densityVolumeTBSlot, densityTexture);
+                listNonemptyCellsPass.VertexShader.BindSampler(deviceContext, nearestClampSamplerSlot, nearestClampSampler);
+                listNonemptyCellsPass.BindShader(deviceContext, bindConstantBuffer: false);
+                DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
 
 
 
+                deviceContext.SetRenderTarget(currentRenderTarget);
                 deviceContext.SetRasterState(terrainRasterState);
                 // Rendering test code. Remove after testing. ---------------------------------------------------------
                 //terrainShaderPass.PixelShader.BindTexture(deviceContext, noiseVolumeTBSlot, randomNoiseVolumeTexture);
@@ -168,12 +191,30 @@ namespace HelixToolkit.UWP
                 // Do Nothing
             }
 
-            private ShaderResourceViewProxy CreateRandomNoiseVolumeTextureSRV(int width, int height, int depth)
+            private ShaderResourceViewProxy CreateRandomNoiseVolumeTextureSRV()
             {
-                var random = new Random();
+                var width = 16;
+                var height = 16;
+                var depth = 16;
                 var pixels = new byte[width * height * depth];
+                var format = Format.R8_UNorm;
+                var createSRV = true;
+                var generateMipMaps = false;
+                var random = new Random();
                 random.NextBytes(pixels);
-                return ShaderResourceViewProxy.CreateViewFromPixelData(EffectTechnique.EffectsManager.Device, pixels, width, height, depth, global::SharpDX.DXGI.Format.R8_UNorm, true, false);
+                return ShaderResourceViewProxy.CreateViewFromPixelData(EffectTechnique.EffectsManager.Device, pixels, width, height, depth, format, createSRV, generateMipMaps);
+            }
+
+            private ShaderResourceViewProxy CreateDensityTextureSRV()
+            {
+                var width = 256;
+                var height = 256;
+                var depth = 256;
+                var pixels = new Half4[width * height * depth];
+                var format = Format.R16G16B16A16_Float;
+                var createSRV = true;
+                var generateMipMaps = false;
+                return ShaderResourceViewProxy.CreateViewFromPixelData(EffectTechnique.EffectsManager.Device, pixels, width, height, depth, format, createSRV, generateMipMaps);
             }
         }
     }

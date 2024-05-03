@@ -304,7 +304,9 @@ cbuffer cbMorphTarget : register(b9)
 
 #if defined(TERRAIN)
 Texture3D texTerrainNoiseVolume : register(t0);
+Texture3D texTerrainDensityVolume : register(t1);
 SamplerState samplerTerrainLinearReapeat : register(s0);
+SamplerState samplerTerrainNearestClamp : register(s1);
 cbuffer cbTerrainCaseToNumPolys : register(b10)
 {
     uint caseToNumPolys[256];

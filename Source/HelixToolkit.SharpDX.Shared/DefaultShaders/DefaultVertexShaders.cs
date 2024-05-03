@@ -259,10 +259,11 @@ namespace HelixToolkit.UWP
             } = "vsScreenDupCursor";
 #endif
 
+            #region Terrain
             public static string VSTerrain { get; } = "vsTerrain";
             public static string VSTerrainBuildDensity { get; } = "vsTerrainBuildDensity";
-            public static string GSTerrainBuildDensity { get; } = "gsTerrainBuildDensity";
-            public static string PSTerrainBuildDensity { get; } = "psTerrainBuildDensity";
+            public static string VSTerrainListNonemptyCells { get; } = "vsTerrainListNonemptyCells";
+            #endregion
         }
 
 
@@ -640,6 +641,10 @@ namespace HelixToolkit.UWP
             /// 
             /// </summary>
             public static readonly ShaderDescription VSTerrainBuildDensity = new ShaderDescription(nameof(VSTerrainBuildDensity), ShaderStage.Vertex, new ShaderReflector(), DefaultVSShaderByteCodes.VSTerrainBuildDensity);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription VSTerrainListNonemptyCells = new ShaderDescription(nameof(VSTerrainListNonemptyCells), ShaderStage.Vertex, new ShaderReflector(), DefaultVSShaderByteCodes.VSTerrainListNonemptyCells);
         }
     }
 }

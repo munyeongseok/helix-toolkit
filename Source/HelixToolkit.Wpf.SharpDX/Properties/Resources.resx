@@ -157,6 +157,9 @@
   <data name="gsTerrainBuildDensity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gsTerrainBuildDensity.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="gsTerrainListNonemptyCells" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gsTerrainListNonemptyCells.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="hsMeshTriTessellation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\hsmeshtritessellation.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -441,6 +444,9 @@
   </data>
   <data name="vsTerrainBuildDensity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vsTerrainBuildDensity.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vsTerrainListNonemptyCells" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vsTerrainListNonemptyCells.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="vsVolume" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\vsvolume.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
