@@ -1,0 +1,12 @@
+#ifndef PSTERRAINBUILDDENSITY_HLSL
+#define PSTERRAINBUILDDENSITY_HLSL
+#define TERRAIN
+#include"..\Common\CommonBuffers.hlsl"
+#include"psCommon.hlsl"
+
+uint main(PSTerrainSplatVertexIDsInput input) : SV_Target
+{
+    return input.VertexID;
+}
+
+#endif

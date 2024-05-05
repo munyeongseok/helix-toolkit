@@ -163,6 +163,9 @@
   <data name="gsTerrainListVerticesToGenerate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gsTerrainListVerticesToGenerate.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="gsTerrainSplatVertexIDs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gsTerrainSplatVertexIDs.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="hsMeshTriTessellation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\hsmeshtritessellation.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -331,6 +334,9 @@
   <data name="psTerrainBuildDensity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\psTerrainBuildDensity.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="psTerrainSplatVertexIDs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\psTerrainSplatVertexIDs.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="psViewCube" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\psviewcube.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -453,6 +459,9 @@
   </data>
   <data name="vsTerrainListVerticesToGenerate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vsTerrainListVerticesToGenerate.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vsTerrainSplatVertexIDs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vsTerrainSplatVertexIDs.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="vsVolume" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\vsvolume.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

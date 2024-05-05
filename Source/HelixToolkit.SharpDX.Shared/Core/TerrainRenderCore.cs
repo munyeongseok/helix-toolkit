@@ -53,7 +53,8 @@ namespace HelixToolkit.UWP
             private ShaderPass terrainShaderPass;
             private ShaderPass buildDensityPass;
             private ShaderPass listNonemptyCellsPass;
-            private ShaderPass listVerticesToGenerate;
+            private ShaderPass listVerticesToGeneratePass;
+            private ShaderPass splatVertexIDsPass;
             private SamplerStateProxy linearRepeatSampler;
             private SamplerStateProxy nearestClampSampler;
             private int noiseVolumeTBSlot;
@@ -101,7 +102,8 @@ namespace HelixToolkit.UWP
                     terrainShaderPass = technique[DefaultPassNames.Default];
                     buildDensityPass = technique[ProceduralTerrainGenerationPassNames.BuildDensity];
                     listNonemptyCellsPass = technique[ProceduralTerrainGenerationPassNames.ListNonemptyCells];
-                    listVerticesToGenerate = technique[ProceduralTerrainGenerationPassNames.ListVerticesToGenerate];
+                    listVerticesToGeneratePass = technique[ProceduralTerrainGenerationPassNames.ListVerticesToGenerate];
+                    splatVertexIDsPass = technique[ProceduralTerrainGenerationPassNames.SplatVertexIDs];
 
                     // Sampler State
                     linearRepeatSampler = technique.EffectsManager.StateManager.Register(DefaultSamplers.LinearSamplerWrapAni1);
@@ -167,8 +169,14 @@ namespace HelixToolkit.UWP
 
                 // Render Pass 3: List Vertices To Generate
                 deviceContext.SetRenderTarget(null);
-                listVerticesToGenerate.BindShader(deviceContext, bindConstantBuffer: false);
+                listVerticesToGeneratePass.BindShader(deviceContext, bindConstantBuffer: false);
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+
+                // Render Pass 4: Splat Vertex IDs
+                deviceContext.SetRenderTarget(null);
+                splatVertexIDsPass.BindShader(deviceContext, bindConstantBuffer: false);
+                DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+
 
 
 

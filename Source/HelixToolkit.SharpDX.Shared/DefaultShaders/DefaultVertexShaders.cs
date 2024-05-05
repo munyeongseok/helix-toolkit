@@ -264,6 +264,7 @@ namespace HelixToolkit.UWP
             public static string VSTerrainBuildDensity { get; } = "vsTerrainBuildDensity";
             public static string VSTerrainListNonemptyCells { get; } = "vsTerrainListNonemptyCells";
             public static string VSTerrainListVerticesToGenerate { get; } = "vsTerrainListVerticesToGenerate";
+            public static string VSTerrainSplatVertexIDs { get; } = "vsTerrainSplatVertexIDs";
             #endregion
         }
 
@@ -666,6 +667,14 @@ namespace HelixToolkit.UWP
                 ShaderStage.Vertex,
                 new ShaderReflector(),
                 DefaultVSShaderByteCodes.VSTerrainListVerticesToGenerate);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription VSTerrainSplatVertexIDs = new ShaderDescription(
+                nameof(VSTerrainSplatVertexIDs),
+                ShaderStage.Vertex,
+                new ShaderReflector(),
+                DefaultVSShaderByteCodes.VSTerrainSplatVertexIDs);
         }
     }
 }

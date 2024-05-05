@@ -485,7 +485,7 @@ struct PSTerrainListNonemptyCellsInput
     uint Z8Y8X8CubeCase8 : ZYXCUBECASE;
 };
 //--------------------------------------------------------------------------------
-// Procedural Terrain Generation Render Pass 2: List Vertices To Generate
+// Procedural Terrain Generation Render Pass 3: List Vertices To Generate
 //--------------------------------------------------------------------------------
 struct VSTerrainListVerticesToGenerateInput
 {
@@ -498,6 +498,24 @@ struct GSTerrainListVerticesToGenerateInput
 struct PSTerrainListVerticesToGenerateInput
 {
     uint Z8Y8X8Null4EdgeNum4 : ZYXNULLEDGENUM;
+};
+//--------------------------------------------------------------------------------
+// Procedural Terrain Generation Render Pass 4: Splat Vertex IDs
+//--------------------------------------------------------------------------------
+struct VSTerrainSplatVertexIDsInput
+{
+    uint Z8Y8X8Null4EdgeNum4 : ZYXNULLEDGENUM;
+};
+struct GSTerrainSplatVertexIDsInput
+{
+    float4 ProjPos : POSITION;
+    uint2 VertexIDAndSlice : VERTEXIDANDSLICE;
+};
+struct PSTerrainSplatVertexIDsInput
+{
+    float4 ProjPos : POSITION;
+    uint VertexID : VERTEXID;
+    uint RTIndex : SV_RenderTargetArrayIndex;
 };
 //--------------------------------------------------------------------------------
 #endif
