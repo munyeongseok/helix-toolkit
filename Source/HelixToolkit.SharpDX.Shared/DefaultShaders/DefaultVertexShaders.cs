@@ -263,6 +263,7 @@ namespace HelixToolkit.UWP
             public static string VSTerrain { get; } = "vsTerrain";
             public static string VSTerrainBuildDensity { get; } = "vsTerrainBuildDensity";
             public static string VSTerrainListNonemptyCells { get; } = "vsTerrainListNonemptyCells";
+            public static string VSTerrainListVerticesToGenerate { get; } = "vsTerrainListVerticesToGenerate";
             #endregion
         }
 
@@ -636,15 +637,35 @@ namespace HelixToolkit.UWP
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription VSTerrain = new ShaderDescription(nameof(VSTerrain), ShaderStage.Vertex, new ShaderReflector(), DefaultVSShaderByteCodes.VSTerrain);
+            public static readonly ShaderDescription VSTerrain = new ShaderDescription(
+                nameof(VSTerrain),
+                ShaderStage.Vertex,
+                new ShaderReflector(),
+                DefaultVSShaderByteCodes.VSTerrain);
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription VSTerrainBuildDensity = new ShaderDescription(nameof(VSTerrainBuildDensity), ShaderStage.Vertex, new ShaderReflector(), DefaultVSShaderByteCodes.VSTerrainBuildDensity);
+            public static readonly ShaderDescription VSTerrainBuildDensity = new ShaderDescription(
+                nameof(VSTerrainBuildDensity),
+                ShaderStage.Vertex,
+                new ShaderReflector(),
+                DefaultVSShaderByteCodes.VSTerrainBuildDensity);
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription VSTerrainListNonemptyCells = new ShaderDescription(nameof(VSTerrainListNonemptyCells), ShaderStage.Vertex, new ShaderReflector(), DefaultVSShaderByteCodes.VSTerrainListNonemptyCells);
+            public static readonly ShaderDescription VSTerrainListNonemptyCells = new ShaderDescription(
+                nameof(VSTerrainListNonemptyCells),
+                ShaderStage.Vertex,
+                new ShaderReflector(),
+                DefaultVSShaderByteCodes.VSTerrainListNonemptyCells);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription VSTerrainListVerticesToGenerate = new ShaderDescription(
+                nameof(VSTerrainListVerticesToGenerate),
+                ShaderStage.Vertex,
+                new ShaderReflector(),
+                DefaultVSShaderByteCodes.VSTerrainListVerticesToGenerate);
         }
     }
 }

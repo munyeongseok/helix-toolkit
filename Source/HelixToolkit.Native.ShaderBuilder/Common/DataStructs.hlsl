@@ -475,7 +475,6 @@ struct VSTerrainListNonemptyCellsInput
 {
     float2 UVWrite : POSITION;
     float2 UVRead : POSITION2;
-    //uint InstanceID : SV_InstanceID;
 };
 struct GSTerrainListNonemptyCellsInput
 {
@@ -484,6 +483,21 @@ struct GSTerrainListNonemptyCellsInput
 struct PSTerrainListNonemptyCellsInput
 {
     uint Z8Y8X8CubeCase8 : ZYXCUBECASE;
+};
+//--------------------------------------------------------------------------------
+// Procedural Terrain Generation Render Pass 2: List Vertices To Generate
+//--------------------------------------------------------------------------------
+struct VSTerrainListVerticesToGenerateInput
+{
+    uint Z8Y8X8CubeCase8 : ZYXCUBECASE;
+};
+struct GSTerrainListVerticesToGenerateInput
+{
+    uint Z8Y8X8Null5EdgeFlags3 : ZYXNULLEDGEFLAGS;
+};
+struct PSTerrainListVerticesToGenerateInput
+{
+    uint Z8Y8X8Null4EdgeNum4 : ZYXNULLEDGENUM;
 };
 //--------------------------------------------------------------------------------
 #endif

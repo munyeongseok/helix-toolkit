@@ -91,6 +91,7 @@ namespace HelixToolkit.UWP
             public static string GSTerrain { get; } = "gsTerrain";
             public static string GSTerrainBuildDensity { get; } = "gsTerrainBuildDensity";
             public static string GSTerrainListNonemptyCells { get; } = "gsTerrainListNonemptyCells";
+            public static string GSTerrainListVerticesToGenerate { get; } = "gsTerrainListVerticesToGenerate";
             #endregion
         }
 
@@ -160,15 +161,35 @@ namespace HelixToolkit.UWP
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription GSTerrain = new ShaderDescription(nameof(GSTerrain), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrain);
+            public static readonly ShaderDescription GSTerrain = new ShaderDescription(
+                nameof(GSTerrain),
+                ShaderStage.Geometry,
+                new ShaderReflector(),
+                DefaultGSShaderByteCodes.GSTerrain);
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription GSTerrainBuildDensity = new ShaderDescription(nameof(GSTerrainBuildDensity), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrainBuildDensity);
+            public static readonly ShaderDescription GSTerrainBuildDensity = new ShaderDescription(
+                nameof(GSTerrainBuildDensity),
+                ShaderStage.Geometry,
+                new ShaderReflector(),
+                DefaultGSShaderByteCodes.GSTerrainBuildDensity);
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription GSTerrainListNonemptyCells = new ShaderDescription(nameof(GSTerrainListNonemptyCells), ShaderStage.Geometry, new ShaderReflector(), DefaultGSShaderByteCodes.GSTerrainListNonemptyCells);
+            public static readonly ShaderDescription GSTerrainListNonemptyCells = new ShaderDescription(
+                nameof(GSTerrainListNonemptyCells),
+                ShaderStage.Geometry,
+                new ShaderReflector(),
+                DefaultGSShaderByteCodes.GSTerrainListNonemptyCells);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription GSTerrainListVerticesToGenerate = new ShaderDescription(
+                nameof(GSTerrainListVerticesToGenerate),
+                ShaderStage.Geometry,
+                new ShaderReflector(),
+                DefaultGSShaderByteCodes.GSTerrainListVerticesToGenerate);
         }
     }
 }

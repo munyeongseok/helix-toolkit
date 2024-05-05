@@ -160,6 +160,9 @@
   <data name="gsTerrainListNonemptyCells" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gsTerrainListNonemptyCells.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="gsTerrainListVerticesToGenerate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gsTerrainListVerticesToGenerate.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="hsMeshTriTessellation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\hsmeshtritessellation.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -447,6 +450,9 @@
   </data>
   <data name="vsTerrainListNonemptyCells" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vsTerrainListNonemptyCells.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vsTerrainListVerticesToGenerate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vsTerrainListVerticesToGenerate.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="vsVolume" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\vsvolume.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

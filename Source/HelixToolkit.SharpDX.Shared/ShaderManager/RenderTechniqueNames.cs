@@ -360,6 +360,10 @@ namespace HelixToolkit.UWP
         /// Render Pass 2: List Nonempty Cells
         /// </summary>
         public const string ListNonemptyCells = "ListNonemptyCells";
+        /// <summary>
+        /// Render Pass 3: List Vertices To Generate
+        /// </summary>
+        public const string ListVerticesToGenerate = "ListVerticesToGenerate";
     }
 
     //public struct TessellationRenderTechniqueNames

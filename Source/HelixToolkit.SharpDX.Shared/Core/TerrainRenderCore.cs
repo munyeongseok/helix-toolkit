@@ -53,6 +53,7 @@ namespace HelixToolkit.UWP
             private ShaderPass terrainShaderPass;
             private ShaderPass buildDensityPass;
             private ShaderPass listNonemptyCellsPass;
+            private ShaderPass listVerticesToGenerate;
             private SamplerStateProxy linearRepeatSampler;
             private SamplerStateProxy nearestClampSampler;
             private int noiseVolumeTBSlot;
@@ -100,6 +101,7 @@ namespace HelixToolkit.UWP
                     terrainShaderPass = technique[DefaultPassNames.Default];
                     buildDensityPass = technique[ProceduralTerrainGenerationPassNames.BuildDensity];
                     listNonemptyCellsPass = technique[ProceduralTerrainGenerationPassNames.ListNonemptyCells];
+                    listVerticesToGenerate = technique[ProceduralTerrainGenerationPassNames.ListVerticesToGenerate];
 
                     // Sampler State
                     linearRepeatSampler = technique.EffectsManager.StateManager.Register(DefaultSamplers.LinearSamplerWrapAni1);
@@ -161,6 +163,11 @@ namespace HelixToolkit.UWP
                 listNonemptyCellsPass.VertexShader.BindTexture(deviceContext, densityVolumeTBSlot, densityTexture);
                 listNonemptyCellsPass.VertexShader.BindSampler(deviceContext, nearestClampSamplerSlot, nearestClampSampler);
                 listNonemptyCellsPass.BindShader(deviceContext, bindConstantBuffer: false);
+                DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+
+                // Render Pass 3: List Vertices To Generate
+                deviceContext.SetRenderTarget(null);
+                listVerticesToGenerate.BindShader(deviceContext, bindConstantBuffer: false);
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
 
 

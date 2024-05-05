@@ -820,11 +820,19 @@ namespace HelixToolkit.UWP
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription PSTerrain = new ShaderDescription(nameof(PSTerrain), ShaderStage.Pixel, new ShaderReflector(), DefaultPSShaderByteCodes.PSTerrain);
+            public static readonly ShaderDescription PSTerrain = new ShaderDescription(
+                nameof(PSTerrain),
+                ShaderStage.Pixel,
+                new ShaderReflector(),
+                DefaultPSShaderByteCodes.PSTerrain);
             /// <summary>
             /// 
             /// </summary>
-            public static readonly ShaderDescription PSTerrainBuildDensity = new ShaderDescription(nameof(PSTerrainBuildDensity), ShaderStage.Pixel, new ShaderReflector(), DefaultPSShaderByteCodes.PSTerrainBuildDensity);
+            public static readonly ShaderDescription PSTerrainBuildDensity = new ShaderDescription(
+                nameof(PSTerrainBuildDensity),
+                ShaderStage.Pixel,
+                new ShaderReflector(),
+                DefaultPSShaderByteCodes.PSTerrainBuildDensity);
         }
     }
 }
