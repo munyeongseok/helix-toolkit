@@ -376,6 +376,10 @@ namespace HelixToolkit.UWP
         /// Render Pass 6: Generate Indices
         /// </summary>
         public const string GenerateIndices = "GenerateIndices";
+        /// <summary>
+        /// Render Pass 7: Draw Rock
+        /// </summary>
+        public const string DrawRock = "DrawRock";
     }
 
     //public struct TessellationRenderTechniqueNames

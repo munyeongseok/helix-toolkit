@@ -340,6 +340,9 @@
   <data name="psTerrainBuildDensity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\psTerrainBuildDensity.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="psTerrainDrawRock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\psTerrainDrawRock.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="psTerrainSplatVertexIDs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\psTerrainSplatVertexIDs.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -459,6 +462,9 @@
   </data>
   <data name="vsTerrainBuildDensity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vsTerrainBuildDensity.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vsTerrainDrawRock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vsTerrainDrawRock.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="vsTerrainGenerateIndices" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vsTerrainGenerateIndices.cso;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

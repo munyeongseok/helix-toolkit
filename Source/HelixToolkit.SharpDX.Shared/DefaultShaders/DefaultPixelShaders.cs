@@ -504,6 +504,7 @@ namespace HelixToolkit.UWP
             public static string PSTerrain { get; } = "psTerrain";
             public static string PSTerrainBuildDensity { get; } = "psTerrainBuildDensity";
             public static string PSTerrainSplatVertexIDs { get; } = "psTerrainSplatVertexIDs";
+            public static string PSTerrainDrawRock { get; } = "psTerrainDrawRock";
             #endregion
         }
 
@@ -843,6 +844,14 @@ namespace HelixToolkit.UWP
                 ShaderStage.Pixel,
                 new ShaderReflector(),
                 DefaultPSShaderByteCodes.PSTerrainSplatVertexIDs);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription PSTerrainDrawRock = new ShaderDescription(
+                nameof(PSTerrainDrawRock),
+                ShaderStage.Pixel,
+                new ShaderReflector(),
+                DefaultPSShaderByteCodes.PSTerrainDrawRock);
             #endregion
         }
     }

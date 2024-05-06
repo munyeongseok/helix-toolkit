@@ -57,6 +57,7 @@ namespace HelixToolkit.UWP
             private ShaderPass splatVertexIDsPass;
             private ShaderPass generateVerticesPass;
             private ShaderPass generateIndicesPass;
+            private ShaderPass drawRockPass;
             private SamplerStateProxy linearRepeatSampler;
             private SamplerStateProxy nearestClampSampler;
             private int noiseVolumeTBSlot;
@@ -110,6 +111,7 @@ namespace HelixToolkit.UWP
                     splatVertexIDsPass = technique[ProceduralTerrainGenerationPassNames.SplatVertexIDs];
                     generateVerticesPass = technique[ProceduralTerrainGenerationPassNames.GenerateVertices];
                     generateIndicesPass = technique[ProceduralTerrainGenerationPassNames.GenerateIndices];
+                    drawRockPass = technique[ProceduralTerrainGenerationPassNames.DrawRock];
 
                     // Sampler State
                     linearRepeatSampler = technique.EffectsManager.StateManager.Register(DefaultSamplers.LinearSamplerWrapAni1);
@@ -200,6 +202,11 @@ namespace HelixToolkit.UWP
                 generateIndicesPass.BindShader(deviceContext, bindConstantBuffer: false);
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
 
+                // Render Pass 7: Draw Rock
+                deviceContext.SetRenderTarget(currentRenderTarget);
+                drawRockPass.BindShader(deviceContext, bindConstantBuffer: false);
+                drawRockPass.BindStates(deviceContext, DefaultStateBinding);
+                DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
 
 
 

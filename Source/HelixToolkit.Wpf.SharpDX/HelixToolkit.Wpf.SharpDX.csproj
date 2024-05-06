@@ -202,6 +202,7 @@
     <None Include="Resources\psSSAOP1.cso" />
     <None Include="Resources\psTerrain.cso" />
     <None Include="Resources\psTerrainBuildDensity.cso" />
+    <None Include="Resources\psTerrainDrawRock.cso" />
     <None Include="Resources\psTerrainSplatVertexIDs.cso" />
     <None Include="Resources\psViewCube.cso" />
     <None Include="Resources\psVolume.cso" />
@@ -242,6 +243,7 @@
     <None Include="Resources\vsSSAO.cso" />
     <None Include="Resources\vsTerrain.cso" />
     <None Include="Resources\vsTerrainBuildDensity.cso" />
+    <None Include="Resources\vsTerrainDrawRock.cso" />
     <None Include="Resources\vsTerrainGenerateIndices.cso" />
     <None Include="Resources\vsTerrainGenerateVertices.cso" />
     <None Include="Resources\vsTerrainListNonemptyCells.cso" />

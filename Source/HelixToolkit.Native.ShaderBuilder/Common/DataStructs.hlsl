@@ -550,4 +550,17 @@ struct PSTerrainGenerateIndicesInput
     uint Index : INDEX;
 };
 //--------------------------------------------------------------------------------
+// Procedural Terrain Generation Render Pass 7: Draw Rock
+//--------------------------------------------------------------------------------
+struct VSTerrainDrawRockInput
+{
+    uint Index : INDEX;
+};
+struct PSTerrainDrawRockInput
+{
+    float4 Position : POSITION;
+    float4 WorldPosAO : WORLDPOSAO;
+    float3 WorldNormal : WORLDNORMAL;
+};
+//--------------------------------------------------------------------------------
 #endif

@@ -16,9 +16,11 @@
       <None Remove="PS\psBillboardTextOITDP.hlsl" />
       <None Remove="PS\psTerrain.hlsl" />
       <None Remove="PS\psTerrainBuildDensity.hlsl" />
+      <None Remove="PS\psTerrainDrawRock.hlsl" />
       <None Remove="PS\psTerrainSplatVertexIDs.hlsl" />
       <None Remove="VS\vsTerrain.hlsl" />
       <None Remove="VS\vsTerrainBuildDensity.hlsl" />
+      <None Remove="VS\vsTerrainDrawRock.hlsl" />
       <None Remove="VS\vsTerrainGenerateIndices.hlsl" />
       <None Remove="VS\vsTerrainGenerateVertices.hlsl" />
       <None Remove="VS\vsTerrainListNonemptyCells.hlsl" />
@@ -266,6 +268,9 @@
         <HLSLShader Include="PS\psSSAOP1.hlsl">
             <ShaderProfile>ps_4_0</ShaderProfile>
         </HLSLShader>
+        <HLSLShader Include="PS\psTerrainDrawRock.hlsl">
+          <ShaderProfile>ps_4_0</ShaderProfile>
+        </HLSLShader>
         <HLSLShader Include="PS\psTerrainSplatVertexIDs.hlsl">
           <ShaderProfile>ps_4_0</ShaderProfile>
         </HLSLShader>
@@ -395,6 +400,9 @@
             <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsTerrain.hlsl">
+          <ShaderProfile>vs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="VS\vsTerrainDrawRock.hlsl">
           <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsTerrainGenerateIndices.hlsl">
