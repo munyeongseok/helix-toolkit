@@ -1,5 +1,5 @@
-#ifndef PSTERRAINBUILDDENSITY_HLSL
-#define PSTERRAINBUILDDENSITY_HLSL
+#ifndef PSTERRAINSPLATVERTEXIDS_HLSL
+#define PSTERRAINSPLATVERTEXIDS_HLSL
 #define TERRAIN
 #include"..\Common\CommonBuffers.hlsl"
 #include"psCommon.hlsl"

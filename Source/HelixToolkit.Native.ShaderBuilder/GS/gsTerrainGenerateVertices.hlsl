@@ -1,5 +1,5 @@
-#ifndef GSTERRAINBUILDDENSITY_HLSL
-#define GSTERRAINBUILDDENSITY_HLSL
+#ifndef GSTERRAINGENERATEVERTICES_HLSL
+#define GSTERRAINGENERATEVERTICES_HLSL
 #define TERRAIN
 #include"..\Common\CommonBuffers.hlsl"
 #include"..\Common\DataStructs.hlsl"

@@ -1,5 +1,5 @@
-#ifndef VSTERRAINBUILDDENSITY_HLSL
-#define VSTERRAINBUILDDENSITY_HLSL
+#ifndef VSTERRAINSPLATVERTEXIDS_HLSL
+#define VSTERRAINSPLATVERTEXIDS_HLSL
 #define TERRAIN
 #include"..\Common\DataStructs.hlsl"
 #include"..\Common\Common.hlsl"
