@@ -372,6 +372,10 @@ namespace HelixToolkit.UWP
         /// Render Pass 5: Generate Vertices
         /// </summary>
         public const string GenerateVertices = "GenerateVertices";
+        /// <summary>
+        /// Render Pass 6: Generate Indices
+        /// </summary>
+        public const string GenerateIndices = "GenerateIndices";
     }
 
     //public struct TessellationRenderTechniqueNames

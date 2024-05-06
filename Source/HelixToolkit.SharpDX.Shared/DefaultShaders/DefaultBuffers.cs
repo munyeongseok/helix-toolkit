@@ -40,6 +40,7 @@ namespace HelixToolkit.UWP
             public const string TerrainEdgeConnectListCB = "cbTerrainEdgeConnectList";
             public const string TerrainNoiseVolumeTB = "texTerrainNoiseVolume";
             public const string TerrainDensityVolumeTB = "texTerrainDensityVolume";
+            public const string TerrainVertexIDVolumeTB = "texVertexIDVolume";
             //-----------Materials--------------------
             public const string DiffuseMapTB = "texDiffuseMap";
             public const string AlphaMapTB = "texAlphaMap";

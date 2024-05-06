@@ -94,6 +94,7 @@ namespace HelixToolkit.UWP
             public static string GSTerrainListVerticesToGenerate { get; } = "gsTerrainListVerticesToGenerate";
             public static string GSTerrainSplatVertexIDs { get; } = "gsTerrainSplatVertexIDs";
             public static string GSTerrainGenerateVertices { get; } = "gsTerrainGenerateVertices";
+            public static string GSTerrainGenerateIndices { get; } = "gsTerrainGenerateIndices";
             #endregion
         }
 
@@ -160,6 +161,7 @@ namespace HelixToolkit.UWP
                 }
             };
 
+            #region Terrain Geometry Shader Description
             /// <summary>
             /// 
             /// </summary>
@@ -208,6 +210,15 @@ namespace HelixToolkit.UWP
                 ShaderStage.Geometry,
                 new ShaderReflector(),
                 DefaultGSShaderByteCodes.GSTerrainGenerateVertices);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription GSTerrainGenerateIndices = new ShaderDescription(
+                nameof(GSTerrainGenerateIndices),
+                ShaderStage.Geometry,
+                new ShaderReflector(),
+                DefaultGSShaderByteCodes.GSTerrainGenerateIndices);
+            #endregion
         }
     }
 }

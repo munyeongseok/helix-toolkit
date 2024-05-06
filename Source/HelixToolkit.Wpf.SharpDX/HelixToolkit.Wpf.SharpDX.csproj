@@ -141,6 +141,7 @@
     <None Include="Resources\gsPoint.cso" />
     <None Include="Resources\gsTerrain.cso" />
     <None Include="Resources\gsTerrainBuildDensity.cso" />
+    <None Include="Resources\gsTerrainGenerateIndices.cso" />
     <None Include="Resources\gsTerrainGenerateVertices.cso" />
     <None Include="Resources\gsTerrainListNonemptyCells.cso" />
     <None Include="Resources\gsTerrainListVerticesToGenerate.cso" />
@@ -241,6 +242,7 @@
     <None Include="Resources\vsSSAO.cso" />
     <None Include="Resources\vsTerrain.cso" />
     <None Include="Resources\vsTerrainBuildDensity.cso" />
+    <None Include="Resources\vsTerrainGenerateIndices.cso" />
     <None Include="Resources\vsTerrainGenerateVertices.cso" />
     <None Include="Resources\vsTerrainListNonemptyCells.cso" />
     <None Include="Resources\vsTerrainListVerticesToGenerate.cso" />

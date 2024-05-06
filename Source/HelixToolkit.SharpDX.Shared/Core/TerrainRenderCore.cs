@@ -56,14 +56,17 @@ namespace HelixToolkit.UWP
             private ShaderPass listVerticesToGeneratePass;
             private ShaderPass splatVertexIDsPass;
             private ShaderPass generateVerticesPass;
+            private ShaderPass generateIndicesPass;
             private SamplerStateProxy linearRepeatSampler;
             private SamplerStateProxy nearestClampSampler;
             private int noiseVolumeTBSlot;
             private int densityVolumeTBSlot;
+            private int vertexIDVolumeTBSlot;
             private int linearRepeatSamplerSlot;
             private int nearestClampSamplerSlot;
             private ShaderResourceViewProxy randomNoiseVolumeTexture;
-            private ShaderResourceViewProxy densityTexture;
+            private ShaderResourceViewProxy densityVolumeTexture;
+            private ShaderResourceViewProxy vertexIDVolumeTexture;
 
             public TerrainRenderCore()
             {
@@ -106,6 +109,7 @@ namespace HelixToolkit.UWP
                     listVerticesToGeneratePass = technique[ProceduralTerrainGenerationPassNames.ListVerticesToGenerate];
                     splatVertexIDsPass = technique[ProceduralTerrainGenerationPassNames.SplatVertexIDs];
                     generateVerticesPass = technique[ProceduralTerrainGenerationPassNames.GenerateVertices];
+                    generateIndicesPass = technique[ProceduralTerrainGenerationPassNames.GenerateIndices];
 
                     // Sampler State
                     linearRepeatSampler = technique.EffectsManager.StateManager.Register(DefaultSamplers.LinearSamplerWrapAni1);
@@ -113,11 +117,13 @@ namespace HelixToolkit.UWP
 
                     // Shader Resource View
                     randomNoiseVolumeTexture = CreateRandomNoiseVolumeTextureSRV();
-                    densityTexture = CreateDensityTextureSRV();
+                    densityVolumeTexture = CreateDensityVolumeTextureSRV();
+                    vertexIDVolumeTexture = CreateVertexIDVolumeTextureSRV();
 
                     // Texture Bind Slot
                     noiseVolumeTBSlot = buildDensityPass.PixelShader.ShaderResourceViewMapping.TryGetBindSlot(DefaultBufferNames.TerrainNoiseVolumeTB);
                     densityVolumeTBSlot = listNonemptyCellsPass.VertexShader.ShaderResourceViewMapping.TryGetBindSlot(DefaultBufferNames.TerrainDensityVolumeTB);
+                    vertexIDVolumeTBSlot = generateIndicesPass.GeometryShader.ShaderResourceViewMapping.TryGetBindSlot(DefaultBufferNames.TerrainVertexIDVolumeTB);
 
                     // Sampler Bind Slot
                     linearRepeatSamplerSlot = buildDensityPass.PixelShader.SamplerMapping.TryGetBindSlot(DefaultSamplerStateNames.TerrainLinearRepeatSampler);
@@ -158,7 +164,7 @@ namespace HelixToolkit.UWP
                 var currentRenderTarget = deviceContext.GetRenderTargets(1)[0];
 
                 // Render Pass 1: Build Density
-                deviceContext.SetRenderTarget(densityTexture);
+                deviceContext.SetRenderTarget(densityVolumeTexture);
                 buildDensityPass.PixelShader.BindTexture(deviceContext, noiseVolumeTBSlot, randomNoiseVolumeTexture);
                 buildDensityPass.PixelShader.BindSampler(deviceContext, linearRepeatSamplerSlot, linearRepeatSampler);
                 buildDensityPass.BindShader(deviceContext, bindConstantBuffer: false);
@@ -166,7 +172,7 @@ namespace HelixToolkit.UWP
 
                 // Render Pass 2: List Nonempty Cells
                 deviceContext.SetRenderTarget(null);
-                listNonemptyCellsPass.VertexShader.BindTexture(deviceContext, densityVolumeTBSlot, densityTexture);
+                listNonemptyCellsPass.VertexShader.BindTexture(deviceContext, densityVolumeTBSlot, densityVolumeTexture);
                 listNonemptyCellsPass.VertexShader.BindSampler(deviceContext, nearestClampSamplerSlot, nearestClampSampler);
                 listNonemptyCellsPass.BindShader(deviceContext, bindConstantBuffer: false);
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
@@ -177,15 +183,21 @@ namespace HelixToolkit.UWP
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
 
                 // Render Pass 4: Splat Vertex IDs
-                deviceContext.SetRenderTarget(null);
+                deviceContext.SetRenderTarget(vertexIDVolumeTexture);
                 splatVertexIDsPass.BindShader(deviceContext, bindConstantBuffer: false);
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
 
                 // Render Pass 5: Generate Vertices
                 deviceContext.SetRenderTarget(null);
-                generateVerticesPass.VertexShader.BindTexture(deviceContext, densityVolumeTBSlot, densityTexture);
+                generateVerticesPass.VertexShader.BindTexture(deviceContext, densityVolumeTBSlot, densityVolumeTexture);
                 generateVerticesPass.VertexShader.BindSampler(deviceContext, nearestClampSamplerSlot, nearestClampSampler);
                 generateVerticesPass.BindShader(deviceContext, bindConstantBuffer: false);
+                DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+
+                // Render Pass 6: Generate Indices
+                deviceContext.SetRenderTarget(null);
+                generateIndicesPass.VertexShader.BindTexture(deviceContext, vertexIDVolumeTBSlot, vertexIDVolumeTexture);
+                generateIndicesPass.BindShader(deviceContext, bindConstantBuffer: false);
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
 
 
@@ -232,7 +244,7 @@ namespace HelixToolkit.UWP
                 return ShaderResourceViewProxy.CreateViewFromPixelData(EffectTechnique.EffectsManager.Device, pixels, width, height, depth, format, createSRV, generateMipMaps);
             }
 
-            private ShaderResourceViewProxy CreateDensityTextureSRV()
+            private ShaderResourceViewProxy CreateDensityVolumeTextureSRV()
             {
                 var width = 256;
                 var height = 256;
@@ -242,6 +254,18 @@ namespace HelixToolkit.UWP
                 var createSRV = true;
                 var generateMipMaps = false;
                 return ShaderResourceViewProxy.CreateViewFromPixelData(EffectTechnique.EffectsManager.Device, pixels, width, height, depth, format, createSRV, generateMipMaps);
+            }
+
+            private ShaderResourceViewProxy CreateVertexIDVolumeTextureSRV()
+            {
+                var width = 16;
+                var height = 16;
+                var depth = 16;
+                var array = new uint[width * height * depth]; // Check size
+                var format = Format.R8G8B8A8_UInt;
+                var createSRV = true;
+                var generateMipMaps = false;
+                return ShaderResourceViewProxy.CreateView(EffectTechnique.EffectsManager.Device, array, format, createSRV, generateMipMaps);
             }
         }
     }

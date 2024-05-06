@@ -818,6 +818,7 @@ namespace HelixToolkit.UWP
             public static readonly ShaderDescription PSSSAOBlur = new ShaderDescription(nameof(PSSSAOBlur), ShaderStage.Pixel, new ShaderReflector(),
                 DefaultPSShaderByteCodes.PSSSAOBlur);
 
+            #region Terrain Pixel Shader Description
             /// <summary>
             /// 
             /// </summary>
@@ -842,6 +843,7 @@ namespace HelixToolkit.UWP
                 ShaderStage.Pixel,
                 new ShaderReflector(),
                 DefaultPSShaderByteCodes.PSTerrainSplatVertexIDs);
+            #endregion
         }
     }
 }

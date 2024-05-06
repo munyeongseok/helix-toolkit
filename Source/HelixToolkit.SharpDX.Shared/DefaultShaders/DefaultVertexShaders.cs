@@ -266,6 +266,7 @@ namespace HelixToolkit.UWP
             public static string VSTerrainListVerticesToGenerate { get; } = "vsTerrainListVerticesToGenerate";
             public static string VSTerrainSplatVertexIDs { get; } = "vsTerrainSplatVertexIDs";
             public static string VSTerrainGenerateVertices { get; } = "vsTerrainGenerateVertices";
+            public static string VSTerrainGenerateIndices { get; } = "vsTerrainGenerateIndices";
             #endregion
         }
 
@@ -636,6 +637,7 @@ namespace HelixToolkit.UWP
 
 #endif
 
+            #region Terrain Vertex Shader Description
             /// <summary>
             /// 
             /// </summary>
@@ -684,6 +686,15 @@ namespace HelixToolkit.UWP
                 ShaderStage.Vertex,
                 new ShaderReflector(),
                 DefaultVSShaderByteCodes.VSTerrainGenerateVertices);
+            /// <summary>
+            /// 
+            /// </summary>
+            public static readonly ShaderDescription VSTerrainGenerateIndices = new ShaderDescription(
+                nameof(VSTerrainGenerateIndices),
+                ShaderStage.Vertex,
+                new ShaderReflector(),
+                DefaultVSShaderByteCodes.VSTerrainGenerateIndices);
+            #endregion
         }
     }
 }

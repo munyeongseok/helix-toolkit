@@ -535,4 +535,19 @@ struct PSTerrainGenerateVerticesInput
     float4 WorldNormal : WORLDNORMAL;
 };
 //--------------------------------------------------------------------------------
+// Procedural Terrain Generation Render Pass 6: Generate Indices
+//--------------------------------------------------------------------------------
+struct VSTerrainGenerateIndicesInput
+{
+    uint Z8Y8X8CubeCase8 : ZYXCUBECASE;
+};
+struct GSTerrainGenerateIndicesInput
+{
+    uint Z8Y8X8CubeCase8 : ZYXCUBECASE;
+};
+struct PSTerrainGenerateIndicesInput
+{
+    uint Index : INDEX;
+};
+//--------------------------------------------------------------------------------
 #endif
