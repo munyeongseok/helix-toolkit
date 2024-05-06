@@ -55,6 +55,7 @@ namespace HelixToolkit.UWP
             private ShaderPass listNonemptyCellsPass;
             private ShaderPass listVerticesToGeneratePass;
             private ShaderPass splatVertexIDsPass;
+            private ShaderPass generateVerticesPass;
             private SamplerStateProxy linearRepeatSampler;
             private SamplerStateProxy nearestClampSampler;
             private int noiseVolumeTBSlot;
@@ -104,6 +105,7 @@ namespace HelixToolkit.UWP
                     listNonemptyCellsPass = technique[ProceduralTerrainGenerationPassNames.ListNonemptyCells];
                     listVerticesToGeneratePass = technique[ProceduralTerrainGenerationPassNames.ListVerticesToGenerate];
                     splatVertexIDsPass = technique[ProceduralTerrainGenerationPassNames.SplatVertexIDs];
+                    generateVerticesPass = technique[ProceduralTerrainGenerationPassNames.GenerateVertices];
 
                     // Sampler State
                     linearRepeatSampler = technique.EffectsManager.StateManager.Register(DefaultSamplers.LinearSamplerWrapAni1);
@@ -113,9 +115,11 @@ namespace HelixToolkit.UWP
                     randomNoiseVolumeTexture = CreateRandomNoiseVolumeTextureSRV();
                     densityTexture = CreateDensityTextureSRV();
 
-                    // Bind Slot
+                    // Texture Bind Slot
                     noiseVolumeTBSlot = buildDensityPass.PixelShader.ShaderResourceViewMapping.TryGetBindSlot(DefaultBufferNames.TerrainNoiseVolumeTB);
                     densityVolumeTBSlot = listNonemptyCellsPass.VertexShader.ShaderResourceViewMapping.TryGetBindSlot(DefaultBufferNames.TerrainDensityVolumeTB);
+
+                    // Sampler Bind Slot
                     linearRepeatSamplerSlot = buildDensityPass.PixelShader.SamplerMapping.TryGetBindSlot(DefaultSamplerStateNames.TerrainLinearRepeatSampler);
                     nearestClampSamplerSlot = listNonemptyCellsPass.VertexShader.SamplerMapping.TryGetBindSlot(DefaultSamplerStateNames.TerrainNearestClampSampler);
 
@@ -176,6 +180,14 @@ namespace HelixToolkit.UWP
                 deviceContext.SetRenderTarget(null);
                 splatVertexIDsPass.BindShader(deviceContext, bindConstantBuffer: false);
                 DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+
+                // Render Pass 5: Generate Vertices
+                deviceContext.SetRenderTarget(null);
+                generateVerticesPass.VertexShader.BindTexture(deviceContext, densityVolumeTBSlot, densityTexture);
+                generateVerticesPass.VertexShader.BindSampler(deviceContext, nearestClampSamplerSlot, nearestClampSampler);
+                generateVerticesPass.BindShader(deviceContext, bindConstantBuffer: false);
+                DrawIndexed(deviceContext, GeometryBuffer.IndexBuffer, InstanceBuffer);
+
 
 
 

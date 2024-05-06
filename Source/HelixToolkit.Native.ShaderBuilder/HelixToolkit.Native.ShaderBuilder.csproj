@@ -8,6 +8,7 @@
     <ItemGroup>
       <None Remove="GS\gsTerrain.hlsl" />
       <None Remove="GS\gsTerrainBuildDensity.hlsl" />
+      <None Remove="GS\gsTerrainGenerateVertices.hlsl" />
       <None Remove="GS\gsTerrainListNonemptyCells.hlsl" />
       <None Remove="GS\gsTerrainListVerticesToGenerate.hlsl" />
       <None Remove="GS\gsTerrainSplatVertexIDs.hlsl" />
@@ -17,6 +18,7 @@
       <None Remove="PS\psTerrainSplatVertexIDs.hlsl" />
       <None Remove="VS\vsTerrain.hlsl" />
       <None Remove="VS\vsTerrainBuildDensity.hlsl" />
+      <None Remove="VS\vsTerrainGenerateVertices.hlsl" />
       <None Remove="VS\vsTerrainListNonemptyCells.hlsl" />
       <None Remove="VS\vsTerrainListVerticesToGenerate.hlsl" />
       <None Remove="VS\vsTerrainSplatVertexIDs.hlsl" />
@@ -60,6 +62,9 @@
         </HLSLShader>
         <HLSLShader Include="GS\gsPoint.hlsl">
             <ShaderProfile>gs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="GS\gsTerrainGenerateVertices.hlsl">
+          <ShaderProfile>gs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="GS\gsTerrainSplatVertexIDs.hlsl">
           <ShaderProfile>gs_4_0</ShaderProfile>
@@ -385,6 +390,9 @@
             <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsTerrain.hlsl">
+          <ShaderProfile>vs_4_0</ShaderProfile>
+        </HLSLShader>
+        <HLSLShader Include="VS\vsTerrainGenerateVertices.hlsl">
           <ShaderProfile>vs_4_0</ShaderProfile>
         </HLSLShader>
         <HLSLShader Include="VS\vsTerrainSplatVertexIDs.hlsl">

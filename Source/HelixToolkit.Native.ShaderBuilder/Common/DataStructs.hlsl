@@ -518,4 +518,21 @@ struct PSTerrainSplatVertexIDsInput
     uint RTIndex : SV_RenderTargetArrayIndex;
 };
 //--------------------------------------------------------------------------------
+// Procedural Terrain Generation Render Pass 5: Generate Vertices
+//--------------------------------------------------------------------------------
+struct VSTerrainGenerateVerticesInput
+{
+    uint Z8Y8X8Null4EdgeNum4 : ZYXNULLEDGENUM;
+};
+struct GSTerrainGenerateVerticesInput
+{
+    float4 WorldPosAO : WORLDPOSAO;
+    float3 WorldNormal : WORLDNORMAL;
+};
+struct PSTerrainGenerateVerticesInput
+{
+    float4 WorldPosAO : WORLDPOSAO;
+    float4 WorldNormal : WORLDNORMAL;
+};
+//--------------------------------------------------------------------------------
 #endif

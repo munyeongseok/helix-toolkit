@@ -368,6 +368,10 @@ namespace HelixToolkit.UWP
         /// Render Pass 4: Splat Vertex IDs
         /// </summary>
         public const string SplatVertexIDs = "SplatVertexIDs";
+        /// <summary>
+        /// Render Pass 5: Generate Vertices
+        /// </summary>
+        public const string GenerateVertices = "GenerateVertices";
     }
 
     //public struct TessellationRenderTechniqueNames

@@ -2510,6 +2510,17 @@ namespace HelixToolkit.UWP
                         BlendStateDescription = DefaultBlendStateDescriptions.NoBlend,
                         DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSNoDepthNoStencil,
                         Topology = PrimitiveTopology.Undefined
+                    },
+                    new ShaderPassDescription(ProceduralTerrainGenerationPassNames.GenerateVertices)
+                    {
+                        ShaderList = new[]
+                        {
+                            DefaultVSShaderDescriptions.VSTerrainGenerateVertices,
+                            DefaultGSShaderDescriptions.GSTerrainGenerateVertices
+                        },
+                        BlendStateDescription = DefaultBlendStateDescriptions.NoBlend,
+                        DepthStencilStateDescription = DefaultDepthStencilDescriptions.DSSNoDepthNoStencil,
+                        Topology = PrimitiveTopology.Undefined
                     }
                 }
             };
